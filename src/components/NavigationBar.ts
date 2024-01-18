@@ -1,3 +1,5 @@
+import { NavbarConfig } from "../config";
+
 const template = document.createElement("template");
 template.innerHTML = `
     <style>
@@ -52,10 +54,10 @@ template.innerHTML = `
         <div class="navbar-content">
             <img src="/main-logo.svg" alt="tbc academy logo" height="41"/>
             <ul class="navbar-link-items">
-                <li class="navbar-link-item">მთავარი</li>
-                <li class="navbar-link-item">TBC IT</li>
-                <li class="navbar-link-item">TBC x USAID</li>
-                <li class="navbar-link-item">რისკები</li>
+                ${NavbarConfig.map(
+                  (navbarLink) =>
+                    `<li class="navbar-link-item">${navbarLink.title}</li>`
+                ).join("")}
             </ul>
         </div>
     </div>
