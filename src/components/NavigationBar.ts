@@ -17,11 +17,10 @@ template.innerHTML = `
         
         .navbar-content {
             width: 100%;
-            padding: 0 16.875rem;
 
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: space-evenly;
         }
 
         .navbar-link-items {
