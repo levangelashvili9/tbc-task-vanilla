@@ -102,6 +102,10 @@ style.textContent = `
         transition: all 0.4s;
     }
 
+    .navlink:hover {
+        color: #00A3E0;
+    }
+
     .sidebar-navlinks {
         list-style: none;
         padding-top: 4rem;
@@ -119,10 +123,6 @@ style.textContent = `
         color: white;
         cursor: pointer;
         transition: all 0.4s;
-    }
-
-    .navlink:hover, .sidebar-navlink:hover {
-        color: #00A3E0;
     }
 
     .menu {
