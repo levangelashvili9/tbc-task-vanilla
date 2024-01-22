@@ -1,7 +1,7 @@
 import { NavbarConfig } from "../config";
 
-const template = document.createElement("template");
-const style = document.createElement("style");
+const navbarTemplate = document.createElement("template");
+const navbarStyle = document.createElement("style");
 
 class NavigationBar extends HTMLElement {
   private burgerMenu: HTMLElement;
@@ -11,8 +11,8 @@ class NavigationBar extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
-    this.shadowRoot?.appendChild(template.content.cloneNode(true));
-    this.shadowRoot?.appendChild(style.cloneNode(true));
+    this.shadowRoot?.appendChild(navbarTemplate.content.cloneNode(true));
+    this.shadowRoot?.appendChild(navbarStyle.cloneNode(true));
 
     this.burgerMenu = this.shadowRoot?.querySelector(".menu") as HTMLElement;
     this.sidebar = this.shadowRoot?.querySelector(".sidebar") as HTMLElement;
@@ -24,6 +24,11 @@ class NavigationBar extends HTMLElement {
     this.overlay.onclick = () => this.toggleSidebarMenu();
   }
 
+  disconnectedCallback() {
+    this.burgerMenu.onclick = null;
+    this.overlay.onclick = null;
+  }
+
   toggleSidebarMenu() {
     this.burgerMenu.classList.toggle("menu-open");
     this.sidebar.classList.toggle("sidebar-open");
@@ -31,10 +36,10 @@ class NavigationBar extends HTMLElement {
   }
 }
 
-template.innerHTML = `
+navbarTemplate.innerHTML = `
     <div class="container">
         <div class="content">     
-            <img src="/main-logo.svg" alt="tbc academy logo" height="41"/>
+            <img src="/IconLogo.svg" alt="tbc academy logo" height="41"/>
             <ul class="navlinks">
                 ${NavbarConfig.map(
                   (navbarLink) =>
@@ -61,7 +66,14 @@ template.innerHTML = `
     </div>
 `;
 
-style.textContent = `
+navbarStyle.textContent = `
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "tbc-font";
+    }
+
     .container {
         position: fixed;
         top: 0;
