@@ -6,5 +6,6 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
     <navigation-bar></navigation-bar>
     <home-hero></home-hero>
     <home-courses></home-courses>
+    <home-partners></home-partners>
   </main>
 `;
