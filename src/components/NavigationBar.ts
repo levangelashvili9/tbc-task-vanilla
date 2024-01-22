@@ -36,34 +36,38 @@ class NavigationBar extends HTMLElement {
   }
 }
 
-navbarTemplate.innerHTML = `
-    <div class="container">
-        <div class="content">     
-            <img src="/IconLogo.svg" alt="tbc academy logo" height="41"/>
-            <ul class="navlinks">
-                ${NavbarConfig.map(
-                  (navbarLink) =>
-                    `<li class="navlink" id="navlink-${navbarLink.id}">${navbarLink.title}</li>`
-                ).join("")}
-            </ul>
-            <div class="menu">
-                <span class="line-top"></span>
-                <span class="line-middle"></span>
-                <span class="line-bottom"></span>
-            </div>
-            <div class="sidebar">
-                <ul class="sidebar-navlinks">
-                    ${NavbarConfig.map(
-                      (navbarLink) =>
-                        `<div class="sidebar-navlink-container" id="sidebar-navlink-${navbarLink.id}">
-                            <li class="sidebar-navlink">${navbarLink.title}</li>
-                        </div>`
-                    ).join("")}
-                </ul>
-            </div>
-        </div>
-        <div class="overlay"></div>
+navbarTemplate.innerHTML = /* HTML */ `
+  <div class="container">
+    <div class="content">
+      <img src="/IconLogo.svg" alt="tbc academy logo" height="41" />
+      <ul class="navlinks">
+        ${NavbarConfig.map(
+          (navbarLink) =>
+            /* HTML */ `<li class="navlink" id="navlink-${navbarLink.id}">
+              ${navbarLink.title}
+            </li>`
+        ).join("")}
+      </ul>
+      <div class="menu">
+        <span class="line-top"></span>
+        <span class="line-middle"></span>
+        <span class="line-bottom"></span>
+      </div>
+      <div class="sidebar">
+        <ul class="sidebar-navlinks">
+          ${NavbarConfig.map(
+            (navbarLink) => /* HTML */ `<div
+              class="sidebar-navlink-container"
+              id="sidebar-navlink-${navbarLink.id}"
+            >
+              <li class="sidebar-navlink">${navbarLink.title}</li>
+            </div>`
+          ).join("")}
+        </ul>
+      </div>
     </div>
+    <div class="overlay"></div>
+  </div>
 `;
 
 navbarStyle.textContent = `

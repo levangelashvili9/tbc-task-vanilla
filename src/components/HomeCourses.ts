@@ -12,30 +12,32 @@ class HomeCourses extends HTMLElement {
   }
 }
 
-coursesTemplate.innerHTML = `
-    <div class="container">
-      <h2 class="heading">სასწავლო კურსები</h2>
-      <div class="course-list">
+coursesTemplate.innerHTML = /* HTML */ `
+  <div class="container">
+    <h2 class="heading">სასწავლო კურსები</h2>
+    <div class="course-list">
       ${CoursesConfig.map(
-        (course) =>
-          `<div class="course-card" id="course-${course.id}">
-            <div class="course-image">
-              <img src="${course.image}" alt="ios development course photo" />
+        (course) => /* HTML */ `<div
+          class="course-card"
+          id="course-${course.id}"
+        >
+          <div class="course-image">
+            <img src="${course.image}" alt="ios development course photo" />
+          </div>
+          <div class="course-info">
+            <div>
+              <h3>${course.title}</h3>
+              <p>${course.status}</p>
             </div>
-            <div class="course-info">
-              <div>
-                <h3>${course.title}</h3>
-                <p>${course.status}</p>
-              </div>
-              <div class="learn-more">
-                <img src="/IconArrowRight.svg" alt="arrow right svg" />
-                <h4>კურსის დეტალები</h4>
-              </div>
+            <div class="learn-more">
+              <img src="/IconArrowRight.svg" alt="arrow right svg" />
+              <h4>კურსის დეტალები</h4>
             </div>
-          </div>`
+          </div>
+        </div>`
       ).join("")}
-      </div>
     </div>
+  </div>
 `;
 
 coursesStyle.textContent = `
