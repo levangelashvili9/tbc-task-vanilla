@@ -3,7 +3,7 @@ import { CoursesConfig } from "../config";
 const coursesTemplate = document.createElement("template");
 const coursesStyle = document.createElement("style");
 
-class TechCourses extends HTMLElement {
+class HomeCourses extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
@@ -147,4 +147,4 @@ coursesStyle.textContent = `
     }
 `;
 
-window.customElements.define("tech-courses", TechCourses);
+window.customElements.define("home-courses", HomeCourses);

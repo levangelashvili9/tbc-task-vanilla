@@ -1,5 +1,5 @@
 import "./NavigationBar";
 import "./HomeHero";
-import "./TechCourses";
+import "./HomeCourses";
 
 export {};
