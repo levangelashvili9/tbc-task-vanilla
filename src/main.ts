@@ -3,7 +3,7 @@ import "./components";
 
 document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
   <main>
-    <navigation-bar></navigation-bar>
+    <the-navbar></the-navbar>
     <home-hero></home-hero>
     <home-courses></home-courses>
     <home-partners></home-partners>

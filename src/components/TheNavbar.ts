@@ -3,7 +3,7 @@ import { NavbarConfig } from "../config";
 const navbarTemplate = document.createElement("template");
 const navbarStyle = document.createElement("style");
 
-class NavigationBar extends HTMLElement {
+class TheNavbar extends HTMLElement {
   private burgerMenu: HTMLElement;
   private sidebar: HTMLElement;
   private overlay: HTMLElement;
@@ -253,4 +253,4 @@ navbarStyle.textContent = `
   }
 `;
 
-window.customElements.define("navigation-bar", NavigationBar);
+window.customElements.define("the-navbar", TheNavbar);

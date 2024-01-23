@@ -1,4 +1,4 @@
-import "./NavigationBar";
+import "./TheNavbar";
 import "./HomeHero";
 import "./HomeCourses";
 import "./HomePartners";
