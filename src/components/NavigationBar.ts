@@ -42,10 +42,12 @@ navbarTemplate.innerHTML = /* HTML */ `
       <img src="/IconLogo.svg" alt="tbc academy logo" height="41" />
       <ul class="navlinks">
         ${NavbarConfig.map(
-          (navbarLink) =>
-            /* HTML */ `<li class="navlink" id="navlink-${navbarLink.id}">
-              ${navbarLink.title}
-            </li>`
+          (navbarLink) => /* HTML */ `<li
+            class="navlink"
+            id="navlink-${navbarLink.id}"
+          >
+            ${navbarLink.title}
+          </li>`
         ).join("")}
       </ul>
       <div class="menu">
