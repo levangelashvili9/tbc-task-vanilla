@@ -60,8 +60,8 @@ heroStyle.textContent = `
     line-height: 2.5rem;
   }
 
-  .heading h1 {
-    margin-bottom: 5px;
+  .heading h1, .heading h2 {
+    font-family: tbcBOLD;
   }
 
   .hero-info {
