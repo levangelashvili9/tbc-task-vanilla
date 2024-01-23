@@ -30,7 +30,7 @@ coursesTemplate.innerHTML = /* HTML */ `
               <p>${course.status}</p>
             </div>
             <div class="learn-more">
-              <img src="/IconArrowRight.svg" alt="arrow right svg" />
+              <img src="/svgs/IconArrowRight.svg" alt="arrow right svg" />
               <h4>კურსის დეტალები</h4>
             </div>
           </div>

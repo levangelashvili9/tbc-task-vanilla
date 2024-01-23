@@ -39,7 +39,7 @@ class NavigationBar extends HTMLElement {
 navbarTemplate.innerHTML = /* HTML */ `
   <div class="container">
     <div class="content">
-      <img src="/IconLogo.svg" alt="tbc academy logo" height="41" />
+      <img src="/svgs/IconLogo.svg" alt="tbc academy logo" height="41" />
       <ul class="navlinks">
         ${NavbarConfig.map(
           (navbarLink) => /* HTML */ `<li

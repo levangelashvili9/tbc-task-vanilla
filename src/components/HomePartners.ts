@@ -87,12 +87,12 @@ partnersTemplate.innerHTML = /* HTML */ `
     <h2 class="heading">პროექტის პარტნიორები</h2>
     <div class="carousel">
       <img
-        src="/IconChevronLeft.svg"
+        src="/svgs/IconChevronLeft.svg"
         alt="chevron pointing left"
         id="chevron-left"
       />
       <img
-        src="/IconChevronRight.svg"
+        src="/svgs/IconChevronRight.svg"
         alt="chevron pointing right"
         id="chevron-right"
       />
