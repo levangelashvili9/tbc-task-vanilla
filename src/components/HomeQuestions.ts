@@ -161,6 +161,10 @@ questionsStyle.textContent = `
   }
 
   @media (min-width: 1024px) {
+    .container {
+      padding: 4rem 5rem 2.5rem;
+    }
+
     .header {
       display: flex;
       justify-content: space-between;
@@ -173,12 +177,6 @@ questionsStyle.textContent = `
 
     .learn-more-desktop {
       display: block;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .container {
-      padding: 4rem 5rem 2.5rem;
     }
   }
 
