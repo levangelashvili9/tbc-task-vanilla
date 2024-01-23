@@ -286,6 +286,12 @@ partnersStyle.textContent = `
     }
   }
 
+  @media (min-width: 1280px) {
+    .heading {
+      margin-left: 16.75rem;
+    }
+  }
+
   @media (min-width: 1440px) {
     #chevron-left {
       left: 6rem;
