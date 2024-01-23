@@ -176,9 +176,15 @@ questionsStyle.textContent = `
     }
   }
 
+  @media (min-width: 1024px) {
+    .container {
+      padding: 4rem 5rem 2.5rem;
+    }
+  }
+
   @media (min-width: 1280px) {
     .container {
-      padding: 2.5rem 16.75rem;
+      padding: 6rem 16.75rem 2.5rem;
     }
   }
 `;
