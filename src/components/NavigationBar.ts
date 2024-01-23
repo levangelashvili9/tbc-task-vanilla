@@ -73,183 +73,183 @@ navbarTemplate.innerHTML = /* HTML */ `
 `;
 
 navbarStyle.textContent = `
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "tbc-font";
-    }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "tbc-font";
+  }
 
-    .container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 5.25rem;
+  .container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5.25rem;
         
-        display: flex;
-        align-items: center;
+    display: flex;
+    align-items: center;
 
-        background-color: #1A1E1F;
-    }
+    background-color: #1A1E1F;
+  }
 
-    .content {
-        width: 100%;
+  .content {
+    width: 100%;
         
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     
-        padding: 1.5rem;
-    }
+    padding: 1.5rem;
+  }
 
-    img {
-        cursor: pointer;
-    }
+  img {
+    cursor: pointer;
+  }
 
+  .navlinks {
+    display: none;
+    align-items: center;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .navlink {
+    color: white;
+    cursor: pointer;
+    transition: all 0.4s;
+  }
+
+  .navlink:hover {
+    color: #00A3E0;
+  }
+
+  .sidebar-navlinks {
+    list-style: none;
+    padding-top: 4rem;
+    padding-right: 1rem;
+  }
+
+  .sidebar-navlink-container {
+    height: 3.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .sidebar-navlink {
+    color: white;
+    cursor: pointer;
+    transition: all 0.4s;
+  }
+
+  .menu {
+    width: 1.625rem;
+        
+    background: blue;
+    position: relative;
+    cursor: pointer;
+
+    z-index: 100;
+  }
+
+  .menu span {
+    height: 3px;
+    width: 100%;
+    background-color: #DBDBDB;
+    border-radius: 1.5px;
+
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.5s, width 0.5s;
+  }
+
+  .menu .line-top {
+    width: 50%;
+    transform: translate(-100%, -9px);
+    transform-origin: 0 0;
+  }
+
+  .menu .line-bottom {
+    width: 50%;
+    right: 0;
+    transform: translate(0, 6px);
+    transform-origin: 100% 0;
+  }
+
+  .menu-open .line-top {
+    transform: translate(0, 0) rotate(-135deg);
+    background-color: #767676;
+  }
+
+  .menu-open .line-middle {
+    transform: translate(-45%, -90%) rotate(-45deg);
+    background-color: #767676;
+  }
+
+  .menu-open .line-bottom {
+    transform: translate(-100%, 0) rotate(-135deg);
+    background-color: #767676;
+  }
+
+  .overlay {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;   
+
+    background-color: rgba(34, 34, 34, 0.5);
+    transition: all 0.5s;
+    z-index: 40;
+  }
+
+  .overlay-active {
+    display: block;
+  }
+
+  .sidebar {
+    position: absolute;
+    top: 0;
+    right: -60%;
+    height: 100vh;
+    width: 60%;   
+
+    background-color: #222222;
+    transition: all 0.5s;
+    z-index: 50;
+  }
+
+  .sidebar-open {
+    right: 0;
+  }
+
+  @media (min-width: 768px) {
+    .content {
+      justify-content: space-evenly;
+      padding: 0;
+    }
+        
     .navlinks {
-        display: none;
-        align-items: center;
-        gap: 2.5rem;
-        list-style: none;
-    }
-
-    .navlink {
-        color: white;
-        cursor: pointer;
-        transition: all 0.4s;
-    }
-
-    .navlink:hover {
-        color: #00A3E0;
-    }
-
-    .sidebar-navlinks {
-        list-style: none;
-        padding-top: 4rem;
-        padding-right: 1rem;
-    }
-
-    .sidebar-navlink-container {
-        height: 3.25rem;
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-    }
-
-    .sidebar-navlink {
-        color: white;
-        cursor: pointer;
-        transition: all 0.4s;
+      display: flex;
     }
 
     .menu {
-        width: 1.625rem;
+      display: none;
+    }
         
-        background: blue;
-        position: relative;
-        cursor: pointer;
-
-        z-index: 100;
-    }
-
-    .menu span {
-        height: 3px;
-        width: 100%;
-        background-color: #DBDBDB;
-        border-radius: 1.5px;
-
-        display: block;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        transition: transform 0.5s, width 0.5s;
-    }
-
-    .menu .line-top {
-        width: 50%;
-        transform: translate(-100%, -9px);
-        transform-origin: 0 0;
-    }
-
-    .menu .line-bottom {
-        width: 50%;
-        right: 0;
-        transform: translate(0, 6px);
-        transform-origin: 100% 0;
-    }
-
-    .menu-open .line-top {
-        transform: translate(0, 0) rotate(-135deg);
-        background-color: #767676;
-    }
-
-    .menu-open .line-middle {
-        transform: translate(-45%, -90%) rotate(-45deg);
-        background-color: #767676;
-    }
-
-    .menu-open .line-bottom {
-        transform: translate(-100%, 0) rotate(-135deg);
-        background-color: #767676;
+    .sidebar {
+      display: none;
     }
 
     .overlay {
-        display: none;
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100vh;
-        width: 100%;   
-
-        background-color: rgba(34, 34, 34, 0.5);
-        transition: all 0.5s;
-        z-index: 40;
+      display: none;
     }
-
-    .overlay-active {
-        display: block;
-    }
-
-    .sidebar {
-        position: absolute;
-        top: 0;
-        right: -60%;
-        height: 100vh;
-        width: 60%;   
-
-        background-color: #222222;
-        transition: all 0.5s;
-        z-index: 50;
-    }
-
-    .sidebar-open {
-        right: 0;
-    }
-
-    @media (min-width: 768px) {
-        .content {
-            justify-content: space-evenly;
-            padding: 0;
-        }
-        
-        .navlinks {
-            display: flex;
-        }
-
-        .menu {
-            display: none;
-        }
-        
-        .sidebar {
-            display: none;
-        }
-
-        .overlay {
-            display: none;
-        }
-    }
+  }
 `;
 
 window.customElements.define("navigation-bar", NavigationBar);
