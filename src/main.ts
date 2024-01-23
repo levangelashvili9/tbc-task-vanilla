@@ -7,5 +7,6 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
     <home-hero></home-hero>
     <home-courses></home-courses>
     <home-partners></home-partners>
+    <home-questions></home-questions>
   </main>
 `;
