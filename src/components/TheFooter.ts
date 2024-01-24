@@ -1,23 +1,26 @@
-const footerTemplate = document.createElement("template");
-const footerStyle = document.createElement("style");
+const theFooterTemplate = document.createElement("template");
+const theFooterStyle = document.createElement("style");
 
 class TheFooter extends HTMLElement {
+  private sidebar: BaseSidebar | null | undefined;
+  private terms: HTMLElement | null | undefined;
+
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
-    this.shadowRoot?.appendChild(footerTemplate.content.cloneNode(true));
-    this.shadowRoot?.appendChild(footerStyle.cloneNode(true));
+    this.shadowRoot?.appendChild(theFooterTemplate.content.cloneNode(true));
+    this.shadowRoot?.appendChild(theFooterStyle.cloneNode(true));
+
+    this.sidebar = this.shadowRoot?.querySelector("base-sidebar");
+    this.terms = this.shadowRoot?.querySelector(".terms");
   }
 
   connectedCallback() {
-    const overlay = document.createElement("div");
-    overlay.classList.add("overlay");
-    const firstChild = document.body.firstChild;
-    document.body.insertBefore(overlay, firstChild);
+    this.terms!.onclick = () => this.sidebar!.openSidebar();
   }
 }
 
-footerTemplate.innerHTML = /* HTML */ `
+theFooterTemplate.innerHTML = /* HTML */ `
   <div class="container">
     <img src="/images/tbc-logo.png" alt="tbc logo" class="tbc-logo" />
     <div class="contact">
@@ -39,13 +42,11 @@ footerTemplate.innerHTML = /* HTML */ `
       <h4 class="terms">წესები და პირობები</h4>
       <h4 class="rights">© 2023 ყველა უფლება დაცულია</h4>
     </div>
-    <div style="position: absolute; top: 0; left: 0; background: yellow;">
-      sda
-    </div>
+    <base-sidebar scrollable="true" right="-85%" width="85%"></base-sidebar>
   </div>
 `;
 
-footerStyle.textContent = `
+theFooterStyle.textContent = `
   * {
     margin: 0;
     padding: 0;
@@ -123,38 +124,6 @@ footerStyle.textContent = `
   .rights {
     color: #F4F4F4;
     font-weight: 400;
-  }
-
-  .sidebar {
-    position: absolute;
-    top: 0;
-    right: -60%;
-    height: 100vh;
-    width: 60%;   
-
-    background-color: #222222;
-    transition: all 0.5s;
-    z-index: 50;
-  }
-
-  .sidebar-open {
-    right: 0;
-  }
-
-  .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 100%;   
-
-    background-color: rgba(34, 34, 34, 0.5);
-    transition: all 0.5s;
-    z-index: 40;
-  }
-
-  .overlay-active {
-    display: block;
   }
 
   @media (min-width: 768px) {
