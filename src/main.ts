@@ -8,5 +8,6 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
     <home-courses></home-courses>
     <home-partners></home-partners>
     <home-questions></home-questions>
+    <the-footer></the-footer>
   </main>
 `;
