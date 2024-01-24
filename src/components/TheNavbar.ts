@@ -1,7 +1,7 @@
 import { NavbarConfig } from "../config";
 
-const navbarTemplate = document.createElement("template");
-const navbarStyle = document.createElement("style");
+const theNavbarTemplate = document.createElement("template");
+const theNavbarStyle = document.createElement("style");
 
 class TheNavbar extends HTMLElement {
   private burgerMenu: HTMLElement;
@@ -11,8 +11,8 @@ class TheNavbar extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
-    this.shadowRoot?.appendChild(navbarTemplate.content.cloneNode(true));
-    this.shadowRoot?.appendChild(navbarStyle.cloneNode(true));
+    this.shadowRoot?.appendChild(theNavbarTemplate.content.cloneNode(true));
+    this.shadowRoot?.appendChild(theNavbarStyle.cloneNode(true));
 
     this.burgerMenu = this.shadowRoot?.querySelector(".menu") as HTMLElement;
     this.sidebar = this.shadowRoot?.querySelector(".sidebar") as HTMLElement;
@@ -39,7 +39,7 @@ class TheNavbar extends HTMLElement {
   }
 }
 
-navbarTemplate.innerHTML = /* HTML */ `
+theNavbarTemplate.innerHTML = /* HTML */ `
   <div class="container">
     <div class="content">
       <img src="/svgs/IconLogo.svg" alt="tbc academy logo" height="41" />
@@ -75,7 +75,7 @@ navbarTemplate.innerHTML = /* HTML */ `
   </div>
 `;
 
-navbarStyle.textContent = `
+theNavbarStyle.textContent = `
   * {
     margin: 0;
     padding: 0;
@@ -89,7 +89,7 @@ navbarStyle.textContent = `
     left: 0;
     width: 100%;
     height: 5.25rem;
-    z-index: 100;
+    z-index: 2;
         
     display: flex;
     align-items: center;
@@ -154,7 +154,7 @@ navbarStyle.textContent = `
     position: relative;
     cursor: pointer;
 
-    z-index: 100;
+    z-index: 5;
   }
 
   .menu span {
@@ -209,7 +209,7 @@ navbarStyle.textContent = `
 
     background-color: rgba(34, 34, 34, 0.5);
     transition: all 0.5s;
-    z-index: 40;
+    z-index: 3;
   }
 
   .overlay-active {
@@ -225,7 +225,7 @@ navbarStyle.textContent = `
 
     background-color: #222222;
     transition: all 0.5s;
-    z-index: 50;
+    z-index: 4;
   }
 
   .sidebar-open {
