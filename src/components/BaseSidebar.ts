@@ -14,8 +14,9 @@ class BaseSidebar extends HTMLElement {
     this.sidebar = this.shadowRoot?.querySelector(".sidebar");
     this.overlay = this.shadowRoot?.querySelector(".overlay");
 
-    this.sidebar!.style.right = this.getAttribute("right") || "-60%";
     this.sidebar!.style.width = this.getAttribute("width") || "60%";
+    this.sidebar!.style.backgroundColor =
+      this.getAttribute("color") || "#222222";
   }
 
   connectedCallback() {
@@ -39,7 +40,7 @@ class BaseSidebar extends HTMLElement {
 
   closeSidebar() {
     this.sidebar!.classList.remove("sidebar-open");
-    this.sidebar!.style.right = this.getAttribute("right") || "-60%";
+    this.sidebar!.style.right = "-100%";
 
     this.overlay!.classList.remove("overlay-open");
 
@@ -67,7 +68,9 @@ baseSideBarStyle.textContent = `
   .sidebar {
     position: fixed;
     top: 0;
+    right: -100%;
     height: 100vh;   
+    overflow-y: scroll;
 
     background-color: #222222;
     transition: all 0.5s;
@@ -93,6 +96,24 @@ baseSideBarStyle.textContent = `
 
   .overlay-open {
     display: block;
+  }
+
+  @media (min-width: 768px) {
+    .sidebar {
+      width: 60% !important;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .sidebar::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .sidebar {
+      width: 45% !important;
+    }
   }
 `;
 
