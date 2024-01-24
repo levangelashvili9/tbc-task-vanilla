@@ -1,18 +1,18 @@
 import { CoursesConfig } from "../config";
 
-const coursesTemplate = document.createElement("template");
-const coursesStyle = document.createElement("style");
+const homeCoursesTemplate = document.createElement("template");
+const homeCoursesStyle = document.createElement("style");
 
 class HomeCourses extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
-    this.shadowRoot?.appendChild(coursesTemplate.content.cloneNode(true));
-    this.shadowRoot?.appendChild(coursesStyle.cloneNode(true));
+    this.shadowRoot?.appendChild(homeCoursesTemplate.content.cloneNode(true));
+    this.shadowRoot?.appendChild(homeCoursesStyle.cloneNode(true));
   }
 }
 
-coursesTemplate.innerHTML = /* HTML */ `
+homeCoursesTemplate.innerHTML = /* HTML */ `
   <div class="container">
     <h2 class="heading">სასწავლო კურსები</h2>
     <div class="course-list">
@@ -40,7 +40,7 @@ coursesTemplate.innerHTML = /* HTML */ `
   </div>
 `;
 
-coursesStyle.textContent = `
+homeCoursesStyle.textContent = `
   * {
     margin: 0;
     padding: 0;

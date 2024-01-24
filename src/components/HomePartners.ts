@@ -1,5 +1,5 @@
-const partnersTemplate = document.createElement("template");
-const partnersStyle = document.createElement("style");
+const homePartnersTemplate = document.createElement("template");
+const homePartnersStyle = document.createElement("style");
 
 class HomePartners extends HTMLElement {
   private slides: NodeListOf<HTMLElement>;
@@ -10,8 +10,8 @@ class HomePartners extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
-    this.shadowRoot?.appendChild(partnersTemplate.content.cloneNode(true));
-    this.shadowRoot?.appendChild(partnersStyle.cloneNode(true));
+    this.shadowRoot?.appendChild(homePartnersTemplate.content.cloneNode(true));
+    this.shadowRoot?.appendChild(homePartnersStyle.cloneNode(true));
 
     this.slides = this.shadowRoot?.querySelectorAll(
       ".slide"
@@ -82,7 +82,7 @@ class HomePartners extends HTMLElement {
   }
 }
 
-partnersTemplate.innerHTML = /* HTML */ `
+homePartnersTemplate.innerHTML = /* HTML */ `
   <div class="container">
     <h2 class="heading">პროექტის პარტნიორები</h2>
     <div class="carousel">
@@ -132,7 +132,7 @@ partnersTemplate.innerHTML = /* HTML */ `
   </div>
 `;
 
-partnersStyle.textContent = `
+homePartnersStyle.textContent = `
   * {
     margin: 0;
     padding: 0;

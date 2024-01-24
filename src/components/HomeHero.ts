@@ -1,16 +1,16 @@
-const heroTemplate = document.createElement("template");
-const heroStyle = document.createElement("style");
+const homeHeroTemplate = document.createElement("template");
+const homeHeroStyle = document.createElement("style");
 
 class HomeHero extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
-    this.shadowRoot?.appendChild(heroTemplate.content.cloneNode(true));
-    this.shadowRoot?.appendChild(heroStyle.cloneNode(true));
+    this.shadowRoot?.appendChild(homeHeroTemplate.content.cloneNode(true));
+    this.shadowRoot?.appendChild(homeHeroStyle.cloneNode(true));
   }
 }
 
-heroTemplate.innerHTML = /* HTML */ `
+homeHeroTemplate.innerHTML = /* HTML */ `
   <div class="container">
     <div class="hero-image">
       <div class="heading">
@@ -31,7 +31,7 @@ heroTemplate.innerHTML = /* HTML */ `
   </div>
 `;
 
-heroStyle.textContent = `
+homeHeroStyle.textContent = `
   * {
     margin: 0;
     padding: 0;

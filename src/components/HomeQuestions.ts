@@ -1,7 +1,7 @@
 import { QuestionsConfig } from "../config";
 
-const questionsTemplate = document.createElement("template");
-const questionsStyle = document.createElement("style");
+const homeQuestionsTemplate = document.createElement("template");
+const homeQuestionsStyle = document.createElement("style");
 
 class HomeQuestions extends HTMLElement {
   private questionTitles: NodeListOf<HTMLElement>;
@@ -9,8 +9,8 @@ class HomeQuestions extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
-    this.shadowRoot?.appendChild(questionsTemplate.content.cloneNode(true));
-    this.shadowRoot?.appendChild(questionsStyle.cloneNode(true));
+    this.shadowRoot?.appendChild(homeQuestionsTemplate.content.cloneNode(true));
+    this.shadowRoot?.appendChild(homeQuestionsStyle.cloneNode(true));
 
     this.questionTitles = this.shadowRoot?.querySelectorAll(
       ".question-title"
@@ -44,7 +44,7 @@ class HomeQuestions extends HTMLElement {
   }
 }
 
-questionsTemplate.innerHTML = /* HTML */ `
+homeQuestionsTemplate.innerHTML = /* HTML */ `
   <div class="container">
     <div class="header">
       <h2 class="heading">ხშირად დასმული კითხვები</h2>
@@ -67,7 +67,7 @@ questionsTemplate.innerHTML = /* HTML */ `
   </div>
 `;
 
-questionsStyle.textContent = `
+homeQuestionsStyle.textContent = `
   * {
     margin: 0;
     padding: 0;
