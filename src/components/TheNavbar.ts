@@ -30,6 +30,9 @@ class TheNavbar extends HTMLElement {
   }
 
   toggleSidebarMenu() {
+    document.body.style.overflow =
+      document.body.style.overflow === "hidden" ? "auto" : "hidden";
+
     this.burgerMenu.classList.toggle("menu-open");
     this.sidebar.classList.toggle("sidebar-open");
     this.overlay.classList.toggle("overlay-active");
