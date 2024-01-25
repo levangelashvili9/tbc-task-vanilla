@@ -40,20 +40,25 @@ theNavbarTemplate.innerHTML = /* HTML */ `
   <header class="container">
     <div class="content">
       <img src="/svgs/IconLogo.svg" alt="tbc academy logo" height="41" />
-      <ul class="navlinks">
-        ${NavbarConfig.map(
-          (navbarLink) => /* HTML */ `<li id="navlink-${navbarLink.id}">
-            <a href="${navbarLink.link}" class="navlink">
-              ${navbarLink.title}
-            </a>
-          </li>`
-        ).join("")}
-      </ul>
+
+      <nav>
+        <ul class="navlinks">
+          ${NavbarConfig.map(
+            (navbarLink) => /* HTML */ `<li id="navlink-${navbarLink.id}">
+              <a href="${navbarLink.link}" class="navlink">
+                ${navbarLink.title}
+              </a>
+            </li>`
+          ).join("")}
+        </ul>
+      </nav>
+
       <div class="menu">
         <span class="line-top"></span>
         <span class="line-middle"></span>
         <span class="line-bottom"></span>
       </div>
+
       <base-sidebar>
         <ul class="sidebar-navlinks">
           ${NavbarConfig.map(
