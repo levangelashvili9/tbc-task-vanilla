@@ -1,7 +1,7 @@
 import { CoursesConfig } from "../config";
 
-const homeCoursesTemplate = document.createElement("template");
-const homeCoursesStyle = document.createElement("style");
+let homeCoursesTemplate = document.createElement("template");
+let homeCoursesStyle = document.createElement("style");
 
 class HomeCourses extends HTMLElement {
   constructor() {
@@ -13,31 +13,34 @@ class HomeCourses extends HTMLElement {
 }
 
 homeCoursesTemplate.innerHTML = /* HTML */ `
-  <div class="container">
-    <h2 class="heading">სასწავლო კურსები</h2>
-    <div class="course-list">
+  <section class="courses-container">
+    <h2 class="courses-heading">სასწავლო კურსები</h2>
+
+    <div class="courses-list">
       ${CoursesConfig.map(
-        (course) => /* HTML */ `<div
+        (course) => /* HTML */ `<article
           class="course-card"
           id="course-${course.id}"
         >
           <div class="course-image">
-            <img src="${course.image}" alt="ios development course photo" />
+            <img src="${course.image}" alt="${course.title} course photo" />
           </div>
           <div class="course-info">
             <div>
               <h3>${course.title}</h3>
               <p>${course.status}</p>
             </div>
-            <div class="learn-more">
+            <div class="course-learn-more">
               <img src="/svgs/IconArrowRight.svg" alt="arrow right svg" />
-              <h4>კურსის დეტალები</h4>
+              <a href="${course.link}" class="course-learn-more-link"
+                >კურსის დეტალები</a
+              >
             </div>
           </div>
-        </div>`
+        </article>`
       ).join("")}
     </div>
-  </div>
+  </section>
 `;
 
 homeCoursesStyle.textContent = `
@@ -48,12 +51,12 @@ homeCoursesStyle.textContent = `
     font-family: "tbc-font";
   }
     
-  .container {
+  .courses-container {
     background-color: #161616;
     padding: 1.5rem 1.5rem 2.5rem 1.5rem;
   }
 
-  .heading {
+  .courses-heading {
     font-size: 24px;
     font-weight: 500;
     color: #F4F4F4;
@@ -61,7 +64,7 @@ homeCoursesStyle.textContent = `
     margin-bottom: 1.5rem;
   }
 
-  .course-list {
+  .courses-list {
     display: grid;
     grid-template-columns: 1fr;
     gap: 2.5rem;
@@ -69,7 +72,7 @@ homeCoursesStyle.textContent = `
 
   .course-card {
     display: grid;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: repeat(2, 1fr);;
     width: 100%;
     border: 1px solid #555555;
     border-radius: 6px;
@@ -101,46 +104,49 @@ homeCoursesStyle.textContent = `
     margin-bottom: 1.25rem;
   }
 
-  .learn-more {
+  .course-learn-more {
     display: flex;
     gap: 0.5rem;
-
+    cursor: pointer;
+  }
+  
+  .course-learn-more-link {
     color: #00AEF3;
     font-size: 16px;
     font-weight: 500;
-    cursor: pointer;
+    text-decoration: none;
   }
 
   @media (min-width: 546px) {
-    .course-list {
+    .courses-list {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(2, 1fr);;
     }
   }
 
   @media (min-width: 768px) {
-    .container {
+    .courses-container {
       padding: 2.5rem 5rem;
     }
 
-    .heading {
+    .courses-heading {
       margin-bottom: 2.5rem;
     }
   }
 
   @media (min-width: 1024px) {
-    .heading {
+    .courses-heading {
       margin-bottom: 4rem;
     }
       
-    .course-list {
+    .courses-list {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);;
     }
   }
 
   @media (min-width: 1280px) {
-    .container {
+    .courses-container {
       padding: 1.5rem 16.75rem 2.5rem 16.75rem;
     }
 
