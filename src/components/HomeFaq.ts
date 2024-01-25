@@ -54,7 +54,11 @@ homeFaqTemplate.innerHTML = /* HTML */ `
   <section class="faq-container">
     <header>
       <h2 class="faq-heading">ხშირად დასმული კითხვები</h2>
-      <a class="faq-learn-more-desktop">ყველა კითხვა</a>
+      <a
+        href="https://www.tbcacademy.ge/usaid-faq"
+        class="faq-learn-more-desktop"
+        >ყველა კითხვა</a
+      >
     </header>
 
     <div class="faq-accordion">
@@ -71,7 +75,9 @@ homeFaqTemplate.innerHTML = /* HTML */ `
       ).join("")}
     </div>
 
-    <a class="faq-learn-more-mobile">ყველა კითხვა</a>
+    <a href="https://www.tbcacademy.ge/usaid-faq" class="faq-learn-more-mobile"
+      >ყველა კითხვა</a
+    >
   </section>
 `;
 
@@ -152,6 +158,7 @@ homeFaqStyle.textContent = `
     cursor: pointer;
     font-size: 20px;
     font-weight: 700;
+    text-decoration: none;
   }
 
   .faq-learn-more-desktop {
