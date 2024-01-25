@@ -21,6 +21,7 @@ class TheNavbar extends HTMLElement {
 
   connectedCallback() {
     this.burgerMenu!.onclick = () => this.toggleMobileMenu();
+    // use custom event to listen to sidebar's overlay click event
     this.sidebar?.addEventListener("custom:overlay-clicked", () =>
       this.overlayClickedHandler()
     );
