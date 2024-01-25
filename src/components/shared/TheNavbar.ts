@@ -216,14 +216,6 @@ theNavbarStyle.textContent = `
     .menu {
       display: none;
     }
-        
-    .sidebar {
-      display: none;
-    }
-
-    .overlay {
-      display: none;
-    }
   }
 `;
 
