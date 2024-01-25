@@ -83,7 +83,7 @@ class HomePartners extends HTMLElement {
 }
 
 homePartnersTemplate.innerHTML = /* HTML */ `
-  <div class="container">
+  <section class="container">
     <h2 class="heading">პროექტის პარტნიორები</h2>
     <div class="carousel">
       <img
@@ -129,7 +129,7 @@ homePartnersTemplate.innerHTML = /* HTML */ `
       <div class="carousel-indicator"></div>
       <div class="carousel-indicator"></div>
     </div>
-  </div>
+  </section>
 `;
 
 homePartnersStyle.textContent = `
