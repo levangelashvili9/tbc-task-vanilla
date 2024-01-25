@@ -1,4 +1,4 @@
-import { TermsConfig } from "../config";
+import { TermsConfig } from "../../config";
 
 let theFooterTemplate = document.createElement("template");
 let theFooterStyle = document.createElement("style");

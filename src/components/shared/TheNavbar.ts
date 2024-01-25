@@ -1,4 +1,4 @@
-import { NavbarConfig } from "../config";
+import { NavbarConfig } from "../../config";
 
 let theNavbarTemplate = document.createElement("template");
 let theNavbarStyle = document.createElement("style");

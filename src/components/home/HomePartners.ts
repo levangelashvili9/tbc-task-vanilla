@@ -1,4 +1,4 @@
-import { PartnersSlidesConfig } from "../config";
+import { PartnersConfig } from "../../config";
 
 let homePartnersTemplate = document.createElement("template");
 let homePartnersStyle = document.createElement("style");
@@ -90,7 +90,7 @@ homePartnersTemplate.innerHTML = /* HTML */ `
         alt="chevron pointing right"
         id="chevron-right"
       />
-      ${PartnersSlidesConfig.map(
+      ${PartnersConfig.map(
         (slide) => /* HTML */ `
           <div class="slide" id="slide-${slide.id}">
             ${slide.images

@@ -1,4 +1,4 @@
-import { QuestionsConfig } from "../config";
+import { FaqConfig } from "../../config";
 
 let homeFaqTemplate = document.createElement("template");
 let homeFaqStyle = document.createElement("style");
@@ -62,7 +62,7 @@ homeFaqTemplate.innerHTML = /* HTML */ `
     </header>
 
     <div class="faq-accordion">
-      ${QuestionsConfig.map(
+      ${FaqConfig.map(
         (question) => /* HTML */ `<div
           class="faq-question"
           id="question-${question.id}"

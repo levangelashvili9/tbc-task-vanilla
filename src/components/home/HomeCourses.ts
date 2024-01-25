@@ -1,4 +1,4 @@
-import { CoursesConfig } from "../config";
+import { CoursesConfig } from "../../config";
 
 let homeCoursesTemplate = document.createElement("template");
 let homeCoursesStyle = document.createElement("style");
