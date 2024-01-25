@@ -4,9 +4,8 @@ let theNavbarTemplate = document.createElement("template");
 let theNavbarStyle = document.createElement("style");
 
 class TheNavbar extends HTMLElement {
-  private burgerMenu: HTMLElement;
-  private sidebar: HTMLElement;
-  private overlay: HTMLElement;
+  private burgerMenu: HTMLElement | null | undefined;
+  private sidebar: BaseSidebar | null | undefined;
 
   constructor() {
     super();
@@ -14,28 +13,26 @@ class TheNavbar extends HTMLElement {
     this.shadowRoot?.appendChild(theNavbarTemplate.content.cloneNode(true));
     this.shadowRoot?.appendChild(theNavbarStyle.cloneNode(true));
 
-    this.burgerMenu = this.shadowRoot?.querySelector(".menu") as HTMLElement;
-    this.sidebar = this.shadowRoot?.querySelector(".sidebar") as HTMLElement;
-    this.overlay = this.shadowRoot?.querySelector(".overlay") as HTMLElement;
+    this.burgerMenu = this.shadowRoot?.querySelector(".menu");
+    this.sidebar = this.shadowRoot?.querySelector("base-sidebar");
   }
 
   connectedCallback() {
-    this.burgerMenu.onclick = () => this.toggleSidebarMenu();
-    this.overlay.onclick = () => this.toggleSidebarMenu();
+    this.burgerMenu!.onclick = () => this.toggleMobileMenu();
   }
 
   disconnectedCallback() {
-    this.burgerMenu.onclick = null;
-    this.overlay.onclick = null;
+    this.burgerMenu!.onclick = null;
   }
 
-  toggleSidebarMenu() {
-    document.body.style.overflow =
-      document.body.style.overflow === "hidden" ? "auto" : "hidden";
-
-    this.burgerMenu.classList.toggle("menu-open");
-    this.sidebar.classList.toggle("sidebar-open");
-    this.overlay.classList.toggle("overlay-active");
+  toggleMobileMenu() {
+    if (this.burgerMenu!.classList.contains("menu-open")) {
+      this.sidebar?.closeSidebar();
+      this.burgerMenu!.classList.remove("menu-open");
+    } else {
+      this.sidebar?.openSidebar();
+      this.burgerMenu!.classList.add("menu-open");
+    }
   }
 }
 
@@ -57,7 +54,7 @@ theNavbarTemplate.innerHTML = /* HTML */ `
         <span class="line-middle"></span>
         <span class="line-bottom"></span>
       </div>
-      <div class="sidebar">
+      <base-sidebar>
         <ul class="sidebar-navlinks">
           ${NavbarConfig.map(
             (navbarLink) => /* HTML */ `<div
@@ -72,9 +69,8 @@ theNavbarTemplate.innerHTML = /* HTML */ `
             </div>`
           ).join("")}
         </ul>
-      </div>
+      </base-sidebar>
     </div>
-    <div class="overlay"></div>
   </header>
 `;
 
@@ -148,8 +144,11 @@ theNavbarStyle.textContent = `
   .menu {
     width: 1.625rem;
         
+    position: absolute;
+    top: 50%;
+    right: 1.5rem;
+    
     background: blue;
-    position: relative;
     cursor: pointer;
 
     z-index: 5;
@@ -195,39 +194,6 @@ theNavbarStyle.textContent = `
   .menu-open .line-bottom {
     transform: translate(-100%, 0) rotate(-135deg);
     background-color: #767676;
-  }
-
-  .overlay {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 100%;   
-
-    background-color: rgba(34, 34, 34, 0.5);
-    transition: all 0.5s;
-    z-index: 3;
-  }
-
-  .overlay-active {
-    display: block;
-  }
-
-  .sidebar {
-    position: absolute;
-    top: 0;
-    right: -60%;
-    height: 100vh;
-    width: 60%;   
-
-    background-color: #222222;
-    transition: all 0.5s;
-    z-index: 4;
-  }
-
-  .sidebar-open {
-    right: 0;
   }
 
   @media (min-width: 768px) {
