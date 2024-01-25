@@ -1,7 +1,7 @@
 import { NavbarConfig } from "../config";
 
-const theNavbarTemplate = document.createElement("template");
-const theNavbarStyle = document.createElement("style");
+let theNavbarTemplate = document.createElement("template");
+let theNavbarStyle = document.createElement("style");
 
 class TheNavbar extends HTMLElement {
   private burgerMenu: HTMLElement;
@@ -40,7 +40,7 @@ class TheNavbar extends HTMLElement {
 }
 
 theNavbarTemplate.innerHTML = /* HTML */ `
-  <div class="container">
+  <header class="container">
     <div class="content">
       <img src="/svgs/IconLogo.svg" alt="tbc academy logo" height="41" />
       <ul class="navlinks">
@@ -72,7 +72,7 @@ theNavbarTemplate.innerHTML = /* HTML */ `
       </div>
     </div>
     <div class="overlay"></div>
-  </div>
+  </header>
 `;
 
 theNavbarStyle.textContent = `

@@ -1,7 +1,7 @@
 import { TermsConfig } from "../config";
 
-const theFooterTemplate = document.createElement("template");
-const theFooterStyle = document.createElement("style");
+let theFooterTemplate = document.createElement("template");
+let theFooterStyle = document.createElement("style");
 
 class TheFooter extends HTMLElement {
   private sidebar: BaseSidebar | null | undefined;
