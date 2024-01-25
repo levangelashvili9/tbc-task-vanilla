@@ -43,12 +43,12 @@ class TheNavbar extends HTMLElement {
     if (!this.isMenuActive) {
       this.sidebar?.openSidebar();
       this.burgerMenu?.openMenu();
-      this.isMenuActive = true;
     } else {
       this.sidebar?.closeSidebar();
       this.burgerMenu?.closeMenu();
-      this.isMenuActive = false;
     }
+
+    this.isMenuActive = !this.isMenuActive;
   }
 }
 
