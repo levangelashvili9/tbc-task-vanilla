@@ -11,12 +11,12 @@ class HomeHero extends HTMLElement {
 }
 
 homeHeroTemplate.innerHTML = /* HTML */ `
-  <div class="container">
+  <section class="hero-container">
     <div class="hero-image">
-      <div class="heading">
+      <header>
         <h1>TBC x USAID</h1>
         <h2>ᲢᲔᲥᲜᲝᲚᲝᲒᲘᲣᲠᲘ ᲒᲐᲜᲐᲗᲚᲔᲑᲘᲡᲗᲕᲘᲡ</h2>
-      </div>
+      </header>
     </div>
     <div class="hero-info">
       <p>
@@ -26,9 +26,9 @@ homeHeroTemplate.innerHTML = /* HTML */ `
         წარმატებულ კურსდამთავრებულებს ეძლევათ შესაძლებლობა დასაქმდნენ თიბისისა
         და მის პარტნიორ კომპანიებში.
       </p>
-      <h3>გაიგე მეტი</h3>
+      <a href="https://www.tbcacademy.ge/usaid-about">გაიგე მეტი</a>
     </div>
-  </div>
+  </section>
 `;
 
 homeHeroStyle.textContent = `
@@ -39,14 +39,14 @@ homeHeroStyle.textContent = `
     font-family: "tbc-font";
   }
 
-  .container {
+  .hero-container {
     margin-top: 5.25rem;
   }
 
   .hero-image {
     background-image: url("/images/hero-image.png");
     background-size: cover;
-    background-position: center;
+    background-position: center center;
     background-repeat: no-repeat;
     height: 13.5rem;
 
@@ -55,12 +55,12 @@ homeHeroStyle.textContent = `
     padding-left: 1.5rem;
   }
 
-  .heading {
+  header {
     color: white;
     line-height: 2.5rem;
   }
 
-  .heading h1, .heading h2 {
+  header h1, header h2 {
     font-family: tbcBOLD;
   }
 
@@ -76,10 +76,12 @@ homeHeroStyle.textContent = `
     margin-bottom: 3rem;
   }
 
-  .hero-info h3 {
+  .hero-info a {
     font-size: 16px;
+    font-weight: bold;
     color: #00AEF3;
-    cursor-pointer;
+    text-decoration: none;
+    cursor: pointer;
   }
 
   @media (min-width: 768px) {
@@ -103,14 +105,24 @@ homeHeroStyle.textContent = `
       line-height: normal;
     }
 
-    .hero-info h3 {
+    .hero-info a {
       font-size: 20px;
     }
   }
 
   @media (min-width: 1280px) {
     .hero-image {
+      height: 21.75rem;
       padding-left: 16.75rem;
+    }
+
+    header h1 {
+      font-size: 42px;
+      margin-bottom: 1.75rem;
+    }
+
+    header h2 {
+      font-size: 34px;
     }
 
     .hero-info {
@@ -119,9 +131,10 @@ homeHeroStyle.textContent = `
 
     .hero-info p {
       font-size: 28px;
+      line-height: 2.8rem;
     }
 
-    .hero-info h3 {
+    .hero-info a {
       font-size: 22px;
     }
   }
