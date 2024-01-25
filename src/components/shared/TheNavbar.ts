@@ -4,8 +4,9 @@ let theNavbarTemplate = document.createElement("template");
 let theNavbarStyle = document.createElement("style");
 
 class TheNavbar extends HTMLElement {
-  private burgerMenu: HTMLElement | null | undefined;
+  private burgerMenu: FrieMenu | null | undefined;
   private sidebar: BaseSidebar | null | undefined;
+  private isMenuActive: boolean;
 
   constructor() {
     super();
@@ -13,8 +14,9 @@ class TheNavbar extends HTMLElement {
     this.shadowRoot?.appendChild(theNavbarTemplate.content.cloneNode(true));
     this.shadowRoot?.appendChild(theNavbarStyle.cloneNode(true));
 
-    this.burgerMenu = this.shadowRoot?.querySelector(".menu");
+    this.burgerMenu = this.shadowRoot?.querySelector("frie-menu");
     this.sidebar = this.shadowRoot?.querySelector("base-sidebar");
+    this.isMenuActive = false;
   }
 
   connectedCallback() {
@@ -26,12 +28,14 @@ class TheNavbar extends HTMLElement {
   }
 
   toggleMobileMenu() {
-    if (this.burgerMenu!.classList.contains("menu-open")) {
-      this.sidebar?.closeSidebar();
-      this.burgerMenu!.classList.remove("menu-open");
-    } else {
+    if (!this.isMenuActive) {
       this.sidebar?.openSidebar();
-      this.burgerMenu!.classList.add("menu-open");
+      this.burgerMenu?.openMenu();
+      this.isMenuActive = true;
+    } else {
+      this.sidebar?.closeSidebar();
+      this.burgerMenu?.closeMenu();
+      this.isMenuActive = false;
     }
   }
 }
@@ -53,11 +57,7 @@ theNavbarTemplate.innerHTML = /* HTML */ `
         </ul>
       </nav>
 
-      <div class="menu">
-        <span class="line-top"></span>
-        <span class="line-middle"></span>
-        <span class="line-bottom"></span>
-      </div>
+      <frie-menu></frie-menu>
 
       <base-sidebar>
         <nav>
@@ -148,61 +148,6 @@ theNavbarStyle.textContent = `
     justify-content: flex-end;
   }
 
-  .menu {
-    width: 1.625rem;
-        
-    position: absolute;
-    top: 50%;
-    right: 1.5rem;
-    
-    background: blue;
-    cursor: pointer;
-
-    z-index: 5;
-  }
-
-  .menu span {
-    height: 3px;
-    width: 100%;
-    background-color: #DBDBDB;
-    border-radius: 1.5px;
-
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: transform 0.5s, width 0.5s;
-  }
-
-  .menu .line-top {
-    width: 50%;
-    transform: translate(-100%, -9px);
-    transform-origin: 0 0;
-  }
-
-  .menu .line-bottom {
-    width: 50%;
-    right: 0;
-    transform: translate(0, 6px);
-    transform-origin: 100% 0;
-  }
-
-  .menu-open .line-top {
-    transform: translate(0, 0) rotate(-135deg);
-    background-color: #767676;
-  }
-
-  .menu-open .line-middle {
-    transform: translate(-45%, -90%) rotate(-45deg);
-    background-color: #767676;
-  }
-
-  .menu-open .line-bottom {
-    transform: translate(-100%, 0) rotate(-135deg);
-    background-color: #767676;
-  }
-
   @media (min-width: 768px) {
     .content {
       justify-content: space-evenly;
@@ -211,10 +156,6 @@ theNavbarStyle.textContent = `
         
     .navlinks {
       display: flex;
-    }
-
-    .menu {
-      display: none;
     }
   }
 `;
