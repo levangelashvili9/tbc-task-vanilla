@@ -45,11 +45,10 @@ theNavbarTemplate.innerHTML = /* HTML */ `
       <img src="/svgs/IconLogo.svg" alt="tbc academy logo" height="41" />
       <ul class="navlinks">
         ${NavbarConfig.map(
-          (navbarLink) => /* HTML */ `<li
-            class="navlink"
-            id="navlink-${navbarLink.id}"
-          >
-            ${navbarLink.title}
+          (navbarLink) => /* HTML */ `<li id="navlink-${navbarLink.id}">
+            <a href="${navbarLink.link}" class="navlink">
+              ${navbarLink.title}
+            </a>
           </li>`
         ).join("")}
       </ul>
@@ -65,7 +64,11 @@ theNavbarTemplate.innerHTML = /* HTML */ `
               class="sidebar-navlink-container"
               id="sidebar-navlink-${navbarLink.id}"
             >
-              <li class="sidebar-navlink">${navbarLink.title}</li>
+              <li>
+                <a href="${navbarLink.link}" class="navlink"
+                  >${navbarLink.title}</a
+                >
+              </li>
             </div>`
           ).join("")}
         </ul>
@@ -122,6 +125,7 @@ theNavbarStyle.textContent = `
     color: white;
     cursor: pointer;
     transition: all 0.4s;
+    text-decoration: none;
   }
 
   .navlink:hover {
@@ -139,12 +143,6 @@ theNavbarStyle.textContent = `
     display: flex;
     align-items: center;
     justify-content: flex-end;
-  }
-
-  .sidebar-navlink {
-    color: white;
-    cursor: pointer;
-    transition: all 0.4s;
   }
 
   .menu {
