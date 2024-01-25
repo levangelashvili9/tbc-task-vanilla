@@ -24,9 +24,9 @@ class TheFooter extends HTMLElement {
   }
 
   connectedCallback() {
-    this.terms!.onclick = () => this.sidebar!.openSidebar();
-    this.SidebarCloseSvg!.onclick = () => this.sidebar!.closeSidebar();
-    this.SidebarCloseButton!.onclick = () => this.sidebar!.closeSidebar();
+    this.terms!.onclick = () => this.sidebar?.openSidebar();
+    this.SidebarCloseSvg!.onclick = () => this.sidebar?.closeSidebar();
+    this.SidebarCloseButton!.onclick = () => this.sidebar?.closeSidebar();
   }
 
   disconnectedCallback() {
@@ -39,6 +39,7 @@ class TheFooter extends HTMLElement {
 theFooterTemplate.innerHTML = /* HTML */ `
   <footer class="container">
     <img src="/images/tbc-logo.png" alt="tbc logo" class="tbc-logo" />
+
     <div class="contact">
       <button class="contact-email">მოგვწერეთ</button>
       <div class="socials-wrapper">
@@ -54,10 +55,12 @@ theFooterTemplate.innerHTML = /* HTML */ `
         />
       </div>
     </div>
+
     <div class="terms-and-rights">
       <h4 class="terms">წესები და პირობები</h4>
       <h4 class="rights">© 2023 ყველა უფლება დაცულია</h4>
     </div>
+
     <base-sidebar scrollable="true" width="85%" color="#2B2B2B">
       <img
         src="/svgs/IconCross.svg"
