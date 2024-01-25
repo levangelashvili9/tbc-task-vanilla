@@ -6,7 +6,8 @@ const theFooterStyle = document.createElement("style");
 class TheFooter extends HTMLElement {
   private sidebar: BaseSidebar | null | undefined;
   private terms: HTMLElement | null | undefined;
-  private termsCloseSvg: HTMLElement | null | undefined;
+  private SidebarCloseSvg: HTMLElement | null | undefined;
+  private SidebarCloseButton: HTMLElement | null | undefined;
 
   constructor() {
     super();
@@ -16,22 +17,27 @@ class TheFooter extends HTMLElement {
 
     this.sidebar = this.shadowRoot?.querySelector("base-sidebar");
     this.terms = this.shadowRoot?.querySelector(".terms");
-    this.termsCloseSvg = this.shadowRoot?.querySelector(".terms-close-svg");
+    this.SidebarCloseSvg = this.shadowRoot?.querySelector(".sidebar-close-svg");
+    this.SidebarCloseButton = this.shadowRoot?.querySelector(
+      ".sidebar-close-button"
+    );
   }
 
   connectedCallback() {
     this.terms!.onclick = () => this.sidebar!.openSidebar();
-    this.termsCloseSvg!.onclick = () => this.sidebar!.closeSidebar();
+    this.SidebarCloseSvg!.onclick = () => this.sidebar!.closeSidebar();
+    this.SidebarCloseButton!.onclick = () => this.sidebar!.closeSidebar();
   }
 
   disconnectedCallback() {
     this.terms!.onclick = () => null;
-    this.termsCloseSvg!.onclick = () => null;
+    this.SidebarCloseSvg!.onclick = () => null;
+    this.SidebarCloseButton!.onclick = () => null;
   }
 }
 
 theFooterTemplate.innerHTML = /* HTML */ `
-  <div class="container">
+  <footer class="container">
     <img src="/images/tbc-logo.png" alt="tbc logo" class="tbc-logo" />
     <div class="contact">
       <button class="contact-email">მოგვწერეთ</button>
@@ -53,22 +59,26 @@ theFooterTemplate.innerHTML = /* HTML */ `
       <h4 class="rights">© 2023 ყველა უფლება დაცულია</h4>
     </div>
     <base-sidebar scrollable="true" width="85%" color="#2B2B2B">
-      <img src="/svgs/IconCross.svg" alt="cross svg" class="terms-close-svg" />
+      <img
+        src="/svgs/IconCross.svg"
+        alt="cross svg"
+        class="sidebar-close-svg"
+      />
       <div class="terms-content">
         ${TermsConfig.map(
-          (term) => /* HTML */ `<div class="term-item" id="term-${term.id}">
+          (term) => /* HTML */ `<article class="term-item" id="term-${term.id}">
             <h3 class="term-title">${term.title}</h3>
             <div class="term-paragraphs">
               ${term.paragraphs
                 .map((paragraph) => `<p>${paragraph}</p>`)
                 .join("")}
             </div>
-          </div>`
+          </article>`
         ).join("")}
-        <button class="terms-close-button">დახურვა</button>
+        <button class="sidebar-close-button">დახურვა</button>
       </div>
     </base-sidebar>
-  </div>
+  </footer>
 `;
 
 theFooterStyle.textContent = `
@@ -146,7 +156,7 @@ theFooterStyle.textContent = `
     opacity: 0.7;
   }
 
-  .terms-close-svg {
+  .sidebar-close-svg {
     position: absolute;
     top: 30px;
     right: 30px;
@@ -157,7 +167,7 @@ theFooterStyle.textContent = `
     cursor: pointer;
   }
 
-  .terms-close-button {
+  .sidebar-close-button {
     width: 100%;
     height: 2.5rem;
 
@@ -171,7 +181,7 @@ theFooterStyle.textContent = `
     cursor: pointer;
   }
 
-  .terms-close-button:hover {
+  .sidebar-close-button:hover {
     background-color: #00AEF3;
     color: white;
   }
@@ -236,7 +246,7 @@ theFooterStyle.textContent = `
       line-height: 1.3rem;
     }
 
-    .terms-close-button {
+    .sidebar-close-button {
       height: 3rem;
     }
   }
@@ -246,7 +256,7 @@ theFooterStyle.textContent = `
       padding: 5rem 3.5rem;
     }
 
-    .terms-close-button {
+    .sidebar-close-button {
       height: 3.75rem;
     }
   }
