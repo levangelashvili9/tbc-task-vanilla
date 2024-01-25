@@ -4,7 +4,7 @@ const homeFaqTemplate = document.createElement("template");
 const homeFaqStyle = document.createElement("style");
 
 class HomeFaq extends HTMLElement {
-  private questionTitles: NodeListOf<HTMLElement>;
+  private questionTitles: NodeListOf<HTMLElement> | undefined;
 
   constructor() {
     super();
@@ -14,33 +14,39 @@ class HomeFaq extends HTMLElement {
 
     this.questionTitles = this.shadowRoot?.querySelectorAll(
       ".faq-question-title"
-    ) as NodeListOf<HTMLElement>;
+    );
   }
 
   connectedCallback() {
-    this.questionTitles.forEach(
-      (questionTitle) =>
-        (questionTitle.onclick = () => this.toggleAccordion(questionTitle))
+    this.questionTitles!.forEach(
+      (title, index) => (title.onclick = () => this.toggleAccordion(index))
     );
   }
 
   disconnectedCallback() {
-    this.questionTitles.forEach(
-      (questionTitle) => (questionTitle.onclick = () => null)
-    );
+    this.questionTitles!.forEach((title) => (title.onclick = () => null));
   }
 
-  toggleAccordion(questionTitle: HTMLElement) {
-    const answer = questionTitle.nextElementSibling as HTMLElement;
-    const height = answer.scrollHeight;
+  toggleAccordion(titleId: number) {
+    this.questionTitles!.forEach((title, index) => {
+      // get height of answer element
+      const answer = title.nextElementSibling as HTMLElement;
+      const height = answer.scrollHeight;
 
-    questionTitle.classList.toggle("faq-question-active");
+      // remove class on every other element and toggle that class on clicked element
+      if (titleId === index) {
+        title.classList.toggle("faq-question-active");
+      } else {
+        title.classList.remove("faq-question-active");
+      }
 
-    if (questionTitle.classList.contains("faq-question-active")) {
-      answer.style.maxHeight = `${height}px`;
-    } else {
-      answer.style.maxHeight = "0px";
-    }
+      // check if element has active class, if true, give it necessary height, if false, hide it
+      if (title.classList.contains("faq-question-active")) {
+        answer.style.maxHeight = `${height}px`;
+      } else {
+        answer.style.maxHeight = "0px";
+      }
+    });
   }
 }
 
