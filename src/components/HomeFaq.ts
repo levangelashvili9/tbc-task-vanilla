@@ -1,19 +1,19 @@
 import { QuestionsConfig } from "../config";
 
-const homeQuestionsTemplate = document.createElement("template");
-const homeQuestionsStyle = document.createElement("style");
+const homeFaqTemplate = document.createElement("template");
+const homeFaqStyle = document.createElement("style");
 
-class HomeQuestions extends HTMLElement {
+class HomeFaq extends HTMLElement {
   private questionTitles: NodeListOf<HTMLElement>;
 
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
-    this.shadowRoot?.appendChild(homeQuestionsTemplate.content.cloneNode(true));
-    this.shadowRoot?.appendChild(homeQuestionsStyle.cloneNode(true));
+    this.shadowRoot?.appendChild(homeFaqTemplate.content.cloneNode(true));
+    this.shadowRoot?.appendChild(homeFaqStyle.cloneNode(true));
 
     this.questionTitles = this.shadowRoot?.querySelectorAll(
-      ".question-title"
+      ".faq-question-title"
     ) as NodeListOf<HTMLElement>;
   }
 
@@ -34,9 +34,9 @@ class HomeQuestions extends HTMLElement {
     const answer = questionTitle.nextElementSibling as HTMLElement;
     const height = answer.scrollHeight;
 
-    questionTitle.classList.toggle("answer-opened");
+    questionTitle.classList.toggle("faq-question-active");
 
-    if (questionTitle.classList.contains("answer-opened")) {
+    if (questionTitle.classList.contains("faq-question-active")) {
       answer.style.maxHeight = `${height}px`;
     } else {
       answer.style.maxHeight = "0px";
@@ -44,30 +44,32 @@ class HomeQuestions extends HTMLElement {
   }
 }
 
-homeQuestionsTemplate.innerHTML = /* HTML */ `
-  <div class="container">
-    <div class="header">
-      <h2 class="heading">ხშირად დასმული კითხვები</h2>
-      <a class="learn-more-desktop">ყველა კითხვა</a>
-    </div>
-    <div class="accordion">
+homeFaqTemplate.innerHTML = /* HTML */ `
+  <section class="faq-container">
+    <header>
+      <h2 class="faq-heading">ხშირად დასმული კითხვები</h2>
+      <a class="faq-learn-more-desktop">ყველა კითხვა</a>
+    </header>
+
+    <div class="faq-accordion">
       ${QuestionsConfig.map(
         (question) => /* HTML */ `<div
-          class="question"
+          class="faq-question"
           id="question-${question.id}"
         >
-          <div class="question-title">
+          <div class="faq-question-title">
             <h3>${question.title}</h3>
           </div>
-          <div class="question-answer">${question.answer}</div>
+          <div class="faq-question-answer">${question.answer}</div>
         </div>`
       ).join("")}
     </div>
-    <a class="learn-more-mobile">ყველა კითხვა</a>
-  </div>
+
+    <a class="faq-learn-more-mobile">ყველა კითხვა</a>
+  </section>
 `;
 
-homeQuestionsStyle.textContent = `
+homeFaqStyle.textContent = `
   * {
     margin: 0;
     padding: 0;
@@ -75,21 +77,21 @@ homeQuestionsStyle.textContent = `
     font-family: "tbc-font";
   }
 
-  .container {
+  .faq-container {
     padding: 3rem 1.5rem;
     background-color: #161616;
     color: #F4F4F4;
   }
 
-  .header {
+  header {
     margin-bottom: 2.5rem;
   }
 
-  .heading {
+  .faq-heading {
     font-weight: 500;
   }
 
-  .accordion {
+  .faq-accordion {
     display: flex;
     flex-direction: column;
     gap: 1.375rem;
@@ -97,47 +99,47 @@ homeQuestionsStyle.textContent = `
     margin-bottom: 3rem;
   }
 
-  .question {
+  .faq-question {
     padding-bottom: 1.25rem;
     border-bottom: 1px solid #353131;
   }
 
-  .question:has(> .question-title.answer-opened) {
+  .faq-question:has(> .faq-question-title.faq-question-active) {
     padding-bottom: 2.5rem;
   }
 
-  .question-title {
+  .faq-question-title {
     display: flex;
     justify-content: space-between; 
     cursor: pointer;
   }
 
-  .question-title::after {
+  .faq-question-title::after {
     content: url(/svgs/IconChevronDown.svg);
     margin: auto 0;
   }
 
-  .answer-opened {
+  .faq-question-active {
     margin-bottom: 1.5rem;
   }
 
-  .answer-opened::after {
+  .faq-question-active::after {
     content: url(/svgs/IconChevronUp.svg);
     margin: auto 0;
   }
 
-  .question-title h3 {
+  .faq-question-title h3 {
     font-weight: 500;
   }
 
-  .question-answer {
+  .faq-question-answer {
     max-height: 0;
     overflow: hidden;
     transition: 0.3s ease max-height;
     line-height: 2rem;
   }
 
-  .learn-more-mobile, .learn-more-desktop {
+  .faq-learn-more-mobile, .faq-learn-more-desktop {
     display: block;
     text-align: center;
     color: #00AEF3;
@@ -146,45 +148,45 @@ homeQuestionsStyle.textContent = `
     font-weight: 700;
   }
 
-  .learn-more-desktop {
+  .faq-learn-more-desktop {
     display: none;
   }
 
   @media (min-width: 768px) {
-    .container {
+    .faq-container {
       padding: 2.5rem 5rem;
     }
 
-    .header {
+    header {
       margin-bottom: 3rem;
     }
   }
 
   @media (min-width: 1024px) {
-    .container {
+    .faq-container {
       padding: 4rem 5rem 2.5rem;
     }
 
-    .header {
+    header {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    .learn-more-mobile {
+    .faq-learn-more-mobile {
       display: none;
     }
 
-    .learn-more-desktop {
+    .faq-learn-more-desktop {
       display: block;
     }
   }
 
   @media (min-width: 1280px) {
-    .container {
+    .faq-container {
       padding: 6rem 16.75rem 2.5rem;
     }
   }
 `;
 
-window.customElements.define("home-questions", HomeQuestions);
+window.customElements.define("home-faq", HomeFaq);

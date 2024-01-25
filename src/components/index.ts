@@ -2,7 +2,7 @@ import "./TheNavbar";
 import "./HomeHero";
 import "./HomeCourses";
 import "./HomePartners";
-import "./HomeQuestions";
+import "./HomeFaq";
 import "./TheFooter";
 import "./BaseSidebar";
 
