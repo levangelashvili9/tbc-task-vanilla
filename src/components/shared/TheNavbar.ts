@@ -21,10 +21,21 @@ class TheNavbar extends HTMLElement {
 
   connectedCallback() {
     this.burgerMenu!.onclick = () => this.toggleMobileMenu();
+    this.sidebar?.addEventListener("custom:overlay-clicked", () =>
+      this.overlayClickedHandler()
+    );
   }
 
   disconnectedCallback() {
     this.burgerMenu!.onclick = null;
+    this.sidebar?.removeEventListener("custom:overlay-clicked", () =>
+      this.overlayClickedHandler()
+    );
+  }
+
+  overlayClickedHandler() {
+    this.burgerMenu?.closeMenu();
+    this.isMenuActive = false;
   }
 
   toggleMobileMenu() {

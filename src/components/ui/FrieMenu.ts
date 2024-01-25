@@ -94,7 +94,7 @@ frieMenuStyle.textContent = `
   }
 
   @media (min-width: 768px) {
-    .menu {
+    :host {
       display: none;
     }
   }

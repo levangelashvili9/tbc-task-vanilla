@@ -2,7 +2,6 @@ let baseSidebarTemplate = document.createElement("template");
 let baseSideBarStyle = document.createElement("style");
 
 class BaseSidebar extends HTMLElement {
-  private sidebar: HTMLElement | null | undefined;
   private overlay: HTMLElement | null | undefined;
 
   constructor() {
@@ -11,16 +10,17 @@ class BaseSidebar extends HTMLElement {
     this.shadowRoot?.appendChild(baseSidebarTemplate.content.cloneNode(true));
     this.shadowRoot?.appendChild(baseSideBarStyle.cloneNode(true));
 
-    this.sidebar = this.shadowRoot?.querySelector(".sidebar");
     this.overlay = this.shadowRoot?.querySelector(".overlay");
 
-    this.sidebar!.style.width = this.getAttribute("width") || "60%";
-    this.sidebar!.style.backgroundColor =
-      this.getAttribute("color") || "#222222";
+    this.style.width = this.getAttribute("width") || "60%";
+    this.style.backgroundColor = this.getAttribute("color") || "#222222";
   }
 
   connectedCallback() {
-    this.overlay!.onclick = () => this.closeSidebar();
+    this.overlay!.onclick = () => {
+      this.closeSidebar();
+      this.dispatchEvent(new CustomEvent("custom:overlay-clicked"));
+    };
   }
 
   disconnectedCallback() {
@@ -28,9 +28,7 @@ class BaseSidebar extends HTMLElement {
   }
 
   openSidebar() {
-    this.sidebar!.classList.add("sidebar-open");
-    this.sidebar!.style.right = "0";
-
+    this.style.right = "0";
     this.overlay!.classList.add("overlay-open");
 
     if (!this.getAttribute("scrollable")) {
@@ -39,9 +37,7 @@ class BaseSidebar extends HTMLElement {
   }
 
   closeSidebar() {
-    this.sidebar!.classList.remove("sidebar-open");
-    this.sidebar!.style.right = "-100%";
-
+    this.style.right = "-100%";
     this.overlay!.classList.remove("overlay-open");
 
     if (!this.getAttribute("scrollable")) {
@@ -51,9 +47,7 @@ class BaseSidebar extends HTMLElement {
 }
 
 baseSidebarTemplate.innerHTML = /* HTML */ `
-  <div class="sidebar">
-    <slot></slot>
-  </div>
+  <slot></slot>
   <div class="overlay"></div>
 `;
 
@@ -65,7 +59,7 @@ baseSideBarStyle.textContent = `
     font-family: "tbc-font";
   }  
 
-  .sidebar {
+  :host {
     position: fixed;
     top: 0;
     right: -100%;
@@ -75,10 +69,6 @@ baseSideBarStyle.textContent = `
     background-color: #222222;
     transition: all 0.5s;
     z-index: 4;
-  }
-
-  .sidebar-open {
-    right: 0;
   }
 
   .overlay {
@@ -91,7 +81,7 @@ baseSideBarStyle.textContent = `
 
     background-color: rgba(34, 34, 34, 0.5);
     transition: all 0.5s;
-    z-index: 3;
+    z-index: -1;
   }
 
   .overlay-open {
@@ -99,19 +89,19 @@ baseSideBarStyle.textContent = `
   }
 
   @media (min-width: 768px) {
-    .sidebar {
+    :host {
       width: 60% !important;
       scrollbar-width: none;
       -ms-overflow-style: none;
     }
 
-    .sidebar::-webkit-scrollbar {
+    :host::-webkit-scrollbar {
       display: none;
     }
   }
   
   @media (min-width: 1024px) {
-    .sidebar {
+    :host {
       width: 45% !important;
     }
   }
