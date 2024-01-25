@@ -1,5 +1,5 @@
-const homeHeroTemplate = document.createElement("template");
-const homeHeroStyle = document.createElement("style");
+let homeHeroTemplate = document.createElement("template");
+let homeHeroStyle = document.createElement("style");
 
 class HomeHero extends HTMLElement {
   constructor() {

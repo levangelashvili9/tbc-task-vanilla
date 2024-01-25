@@ -1,7 +1,7 @@
 import { QuestionsConfig } from "../config";
 
-const homeFaqTemplate = document.createElement("template");
-const homeFaqStyle = document.createElement("style");
+let homeFaqTemplate = document.createElement("template");
+let homeFaqStyle = document.createElement("style");
 
 class HomeFaq extends HTMLElement {
   private questionTitles: NodeListOf<HTMLElement> | undefined;

@@ -1,5 +1,5 @@
-const baseSidebarTemplate = document.createElement("template");
-const baseSideBarStyle = document.createElement("style");
+let baseSidebarTemplate = document.createElement("template");
+let baseSideBarStyle = document.createElement("style");
 
 class BaseSidebar extends HTMLElement {
   private sidebar: HTMLElement | null | undefined;
