@@ -1,11 +1,13 @@
-const homePartnersTemplate = document.createElement("template");
-const homePartnersStyle = document.createElement("style");
+import { PartnersSlidesConfig } from "../config";
+
+let homePartnersTemplate = document.createElement("template");
+let homePartnersStyle = document.createElement("style");
 
 class HomePartners extends HTMLElement {
-  private slides: NodeListOf<HTMLElement>;
-  private indicators: NodeListOf<HTMLElement>;
-  private prevSlideButton: HTMLElement;
-  private nextSlideButton: HTMLElement;
+  private slides: NodeListOf<HTMLElement> | undefined;
+  private indicators: NodeListOf<HTMLElement> | undefined;
+  private prevSlideButton: HTMLElement | null | undefined;
+  private nextSlideButton: HTMLElement | null | undefined;
 
   constructor() {
     super();
@@ -13,21 +15,12 @@ class HomePartners extends HTMLElement {
     this.shadowRoot?.appendChild(homePartnersTemplate.content.cloneNode(true));
     this.shadowRoot?.appendChild(homePartnersStyle.cloneNode(true));
 
-    this.slides = this.shadowRoot?.querySelectorAll(
-      ".slide"
-    ) as NodeListOf<HTMLElement>;
+    this.slides = this.shadowRoot?.querySelectorAll(".slide");
+    this.indicators = this.shadowRoot?.querySelectorAll(".carousel-indicator");
+    this.prevSlideButton = this.shadowRoot?.getElementById("chevron-left");
+    this.nextSlideButton = this.shadowRoot?.getElementById("chevron-right");
 
-    this.indicators = this.shadowRoot?.querySelectorAll(
-      ".carousel-indicator"
-    ) as NodeListOf<HTMLElement>;
-
-    this.prevSlideButton = this.shadowRoot?.getElementById(
-      "chevron-left"
-    ) as HTMLElement;
-
-    this.nextSlideButton = this.shadowRoot?.getElementById(
-      "chevron-right"
-    ) as HTMLElement;
+    this.slides![0].classList.add("slide-active");
   }
 
   connectedCallback() {
@@ -35,34 +28,34 @@ class HomePartners extends HTMLElement {
       (indicator, index) => (indicator.onclick = () => this.changeSlide(index))
     );
 
-    this.prevSlideButton.onclick = () => this.prevSlide();
-    this.nextSlideButton.onclick = () => this.nextSlide();
+    this.prevSlideButton!.onclick = () => this.prevSlide();
+    this.nextSlideButton!.onclick = () => this.nextSlide();
   }
 
   disconnectedCallback() {
     this.indicators?.forEach((indicator) => (indicator.onclick = () => null));
 
-    this.prevSlideButton.onclick = () => null;
-    this.nextSlideButton.onclick = () => null;
+    this.prevSlideButton!.onclick = () => null;
+    this.nextSlideButton!.onclick = () => null;
   }
 
   changeSlide(id: number) {
     // Remove .slide-active class from all slide elements
-    this.slides.forEach((slide) => slide.classList.remove("slide-active"));
+    this.slides!.forEach((slide) => slide.classList.remove("slide-active"));
 
     // Add .slide-active class to active slide only
-    this.slides[id].classList.add("slide-active");
+    this.slides![id].classList.add("slide-active");
   }
 
   prevSlide() {
     // Find the currently active slide
-    const activeSlide = [...this.slides].findIndex((slide) =>
+    const activeSlide = [...this.slides!].findIndex((slide) =>
       slide.classList.contains("slide-active")
     );
 
     // Calculate the index of the prev slide
     const prevSlideIndex =
-      activeSlide > 0 ? activeSlide - 1 : this.slides.length - 1;
+      activeSlide > 0 ? activeSlide - 1 : this.slides!.length - 1;
 
     // Change to the prev slide
     this.changeSlide(prevSlideIndex);
@@ -70,12 +63,12 @@ class HomePartners extends HTMLElement {
 
   nextSlide() {
     // Find the currently active slide
-    const activeSlide = [...this.slides].findIndex((slide) =>
+    const activeSlide = [...this.slides!].findIndex((slide) =>
       slide.classList.contains("slide-active")
     );
 
     // Calculate the index of the next slide
-    const nextSlideIndex = (activeSlide + 1) % this.slides.length;
+    const nextSlideIndex = (activeSlide + 1) % this.slides!.length;
 
     // Change to the next slide
     this.changeSlide(nextSlideIndex);
@@ -83,8 +76,9 @@ class HomePartners extends HTMLElement {
 }
 
 homePartnersTemplate.innerHTML = /* HTML */ `
-  <section class="container">
-    <h2 class="heading">პროექტის პარტნიორები</h2>
+  <section class="partners-container">
+    <h2 class="partners-heading">პროექტის პარტნიორები</h2>
+
     <div class="carousel">
       <img
         src="/svgs/IconChevronLeft.svg"
@@ -96,34 +90,23 @@ homePartnersTemplate.innerHTML = /* HTML */ `
         alt="chevron pointing right"
         id="chevron-right"
       />
-      <div class="slide slide-active" id="slide-1">
-        <div class="image-container">
-          <img src="/images/usaid.png" />
-        </div>
-        <div class="image-container">
-          <img src="/images/space.png" />
-        </div>
-        <div class="image-container">
-          <img src="/images/t-net.png" />
-        </div>
-      </div>
-      <div class="slide" id="slide-2">
-        <div class="image-container">
-          <img src="/images/tegeta.png" />
-        </div>
-        <div class="image-container">
-          <img src="/images/spectre.png" />
-        </div>
-        <div class="image-container">
-          <img src="/images/tbc-leasing.png" />
-        </div>
-      </div>
-      <div class="slide" id="slide-3">
-        <div class="image-container">
-          <img src="/images/ufc.png" />
-        </div>
-      </div>
+      ${PartnersSlidesConfig.map(
+        (slide) => /* HTML */ `
+          <div class="slide" id="slide-${slide.id}">
+            ${slide.images
+              .map(
+                (image) => /* HTML */ `
+                  <div class="image-container" id="slide-image-${image.id}">
+                    <img src="${image.src}" alt="${image.alt}" />
+                  </div>
+                `
+              )
+              .join("")}
+          </div>
+        `
+      ).join("")}
     </div>
+
     <div class="carousel-indicators">
       <div class="carousel-indicator"></div>
       <div class="carousel-indicator"></div>
@@ -140,12 +123,12 @@ homePartnersStyle.textContent = `
     font-family: "tbc-font";
   }
       
-  .container {
+  .partners-container {
     background-color: #2B2B2B;
     padding: 1.5rem 0;
   }
 
-  .heading {
+  .partners-heading {
     margin-left: 1.5rem;
     margin-bottom: 4rem;
     color: #F4F4F4;
@@ -232,11 +215,11 @@ homePartnersStyle.textContent = `
   }
 
   @media (min-width: 768px) {
-    .container {
+    .partners-container {
       padding: 2.5rem 0;
     }
           
-    .heading {
+    .partners-heading {
       margin-left: 5rem;
       margin-bottom: 3rem;
     }
@@ -251,11 +234,11 @@ homePartnersStyle.textContent = `
   }
 
   @media (min-width: 1024px) {
-    .container {
+    .partners-container {
       padding-bottom: 5rem;
     }
 
-    .heading {
+    .partners-heading {
       margin-bottom: 6rem;
     }
 
@@ -287,7 +270,7 @@ homePartnersStyle.textContent = `
   }
 
   @media (min-width: 1280px) {
-    .heading {
+    .partners-heading {
       margin-left: 16.75rem;
     }
   }
