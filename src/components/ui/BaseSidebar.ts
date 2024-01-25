@@ -19,7 +19,7 @@ class BaseSidebar extends HTMLElement {
   connectedCallback() {
     this.overlay!.onclick = () => {
       this.closeSidebar();
-      // create custom event to handle overlay click in parent file
+      // create custom event to handle overlay click in parent component
       this.dispatchEvent(new CustomEvent("custom:overlay-clicked"));
     };
   }
