@@ -60,20 +60,22 @@ theNavbarTemplate.innerHTML = /* HTML */ `
       </div>
 
       <base-sidebar>
-        <ul class="sidebar-navlinks">
-          ${NavbarConfig.map(
-            (navbarLink) => /* HTML */ `<div
-              class="sidebar-navlink-container"
-              id="sidebar-navlink-${navbarLink.id}"
-            >
-              <li>
-                <a href="${navbarLink.link}" class="navlink"
-                  >${navbarLink.title}</a
-                >
-              </li>
-            </div>`
-          ).join("")}
-        </ul>
+        <nav>
+          <ul class="sidebar-navlinks">
+            ${NavbarConfig.map(
+              (navbarLink) => /* HTML */ `<div
+                class="sidebar-navlink-container"
+                id="sidebar-navlink-${navbarLink.id}"
+              >
+                <li>
+                  <a href="${navbarLink.link}" class="navlink"
+                    >${navbarLink.title}</a
+                  >
+                </li>
+              </div>`
+            ).join("")}
+          </ul>
+        </nav>
       </base-sidebar>
     </div>
   </header>
