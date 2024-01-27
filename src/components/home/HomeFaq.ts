@@ -1,51 +1,10 @@
 import { FaqConfig } from "../../config";
 
 class HomeFaq extends HTMLElement {
-  private questions: NodeListOf<HTMLElement> | undefined;
-  private questionTitles: NodeListOf<HTMLElement> | undefined;
-
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
     this.render();
-
-    this.questions = this.shadowRoot?.querySelectorAll(".faq-question");
-    this.questionTitles = this.shadowRoot?.querySelectorAll(
-      ".faq-question-title"
-    );
-  }
-
-  connectedCallback() {
-    this.questions!.forEach(
-      (question, index) =>
-        (question.onclick = () => this.toggleAccordion(index))
-    );
-  }
-
-  disconnectedCallback() {
-    this.questions!.forEach((question) => (question.onclick = () => null));
-  }
-
-  toggleAccordion(titleId: number) {
-    this.questionTitles!.forEach((title, index) => {
-      // get height of answer element
-      const answer = title.nextElementSibling as HTMLElement;
-      const height = answer.scrollHeight;
-
-      // remove class on every other element and toggle that class on clicked element
-      if (titleId === index) {
-        title.classList.toggle("faq-question-active");
-      } else {
-        title.classList.remove("faq-question-active");
-      }
-
-      // check if element has active class, if true, give it necessary height, if false, hide it
-      if (title.classList.contains("faq-question-active")) {
-        answer.style.maxHeight = `${height}px`;
-      } else {
-        answer.style.maxHeight = "0px";
-      }
-    });
   }
 
   render() {
@@ -62,15 +21,11 @@ class HomeFaq extends HTMLElement {
 
         <div class="faq-accordion">
           ${FaqConfig.map(
-            (question) => /* HTML */ `<div
-              class="faq-question"
-              id="question-${question.id}"
-            >
-              <div class="faq-question-title">
-                <h3>${question.title}</h3>
-              </div>
-              <div class="faq-question-answer">${question.answer}</div>
-            </div>`
+            (question) => /* HTML */ `<home-faq-question
+              id="${question.id}"
+              title="${question.title}"
+              answer="${question.answer}"
+            ></home-faq-question>`
           ).join("")}
         </div>
 
@@ -110,46 +65,6 @@ class HomeFaq extends HTMLElement {
         gap: 1.375rem;
         
         margin-bottom: 3rem;
-      }
-    
-      .faq-question {
-        padding-bottom: 1.25rem;
-        border-bottom: 1px solid #353131;
-        cursor: pointer;
-      }
-    
-      .faq-question:has(> .faq-question-title.faq-question-active) {
-        padding-bottom: 2.5rem;
-      }
-    
-      .faq-question-title {
-        display: flex;
-        justify-content: space-between; 
-      }
-    
-      .faq-question-title::after {
-        content: url(/svgs/IconChevronDown.svg);
-        margin: auto 0;
-      }
-    
-      .faq-question-active {
-        margin-bottom: 1.5rem;
-      }
-    
-      .faq-question-active::after {
-        content: url(/svgs/IconChevronUp.svg);
-        margin: auto 0;
-      }
-    
-      .faq-question-title h3 {
-        font-weight: 500;
-      }
-    
-      .faq-question-answer {
-        max-height: 0;
-        overflow: hidden;
-        transition: 0.3s ease max-height;
-        line-height: 2rem;
       }
     
       .faq-learn-more-mobile, .faq-learn-more-desktop {

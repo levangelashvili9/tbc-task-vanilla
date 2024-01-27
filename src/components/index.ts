@@ -8,6 +8,7 @@ import "./home/HomeCourses";
 import "./home/HomeCoursesCard";
 import "./home/HomePartners";
 import "./home/HomeFaq";
+import "./home/HomeFaqQuestion";
 
 // ui
 import "./ui/BaseSidebar";
