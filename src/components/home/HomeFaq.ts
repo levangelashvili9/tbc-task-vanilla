@@ -1,6 +1,7 @@
 import { FaqConfig } from "../../config";
 
 class HomeFaq extends HTMLElement {
+  private questions: NodeListOf<HTMLElement> | undefined;
   private questionTitles: NodeListOf<HTMLElement> | undefined;
 
   constructor() {
@@ -8,19 +9,21 @@ class HomeFaq extends HTMLElement {
     this.attachShadow({ mode: "open" });
     this.render();
 
+    this.questions = this.shadowRoot?.querySelectorAll(".faq-question");
     this.questionTitles = this.shadowRoot?.querySelectorAll(
       ".faq-question-title"
     );
   }
 
   connectedCallback() {
-    this.questionTitles!.forEach(
-      (title, index) => (title.onclick = () => this.toggleAccordion(index))
+    this.questions!.forEach(
+      (question, index) =>
+        (question.onclick = () => this.toggleAccordion(index))
     );
   }
 
   disconnectedCallback() {
-    this.questionTitles!.forEach((title) => (title.onclick = () => null));
+    this.questions!.forEach((question) => (question.onclick = () => null));
   }
 
   toggleAccordion(titleId: number) {
@@ -112,6 +115,7 @@ class HomeFaq extends HTMLElement {
       .faq-question {
         padding-bottom: 1.25rem;
         border-bottom: 1px solid #353131;
+        cursor: pointer;
       }
     
       .faq-question:has(> .faq-question-title.faq-question-active) {
@@ -121,7 +125,6 @@ class HomeFaq extends HTMLElement {
       .faq-question-title {
         display: flex;
         justify-content: space-between; 
-        cursor: pointer;
       }
     
       .faq-question-title::after {
