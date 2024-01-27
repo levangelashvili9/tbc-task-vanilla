@@ -39,16 +39,23 @@ class TheFooter extends HTMLElement {
         <div class="contact">
           <base-button type="primary">მოგვწერეთ</base-button>
           <div class="socials-wrapper">
-            <img
-              src="/images/facebook.png"
-              alt="facebook logo"
-              class="facebook-logo"
-            />
-            <img
-              src="/images/youtube.png"
-              alt="youtube logo"
-              class="youtube-logo"
-            />
+            <a href="https://www.facebook.com/tbcbank/" target="_blank">
+              <img
+                src="/images/facebook.png"
+                alt="facebook logo"
+                class="facebook-logo"
+              />
+            </a>
+            <a
+              href="https://www.youtube.com/channel/UCGk9R2LV2ywOL80r8Xc6xtQ"
+              target="_blank"
+            >
+              <img
+                src="/images/youtube.png"
+                alt="youtube logo"
+                class="youtube-logo"
+              />
+            </a>
           </div>
         </div>
 
