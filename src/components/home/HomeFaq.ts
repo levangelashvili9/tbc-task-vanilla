@@ -22,9 +22,7 @@ class HomeFaq extends HTMLElement {
           ).join("")}
         </div>
 
-        <a
-          href="https://www.tbcacademy.ge/usaid-faq"
-          class="faq-learn-more-mobile"
+        <a href="https://www.tbcacademy.ge/usaid-faq" class="faq-learn-more"
           >ყველა კითხვა</a
         >
       </section>
@@ -59,7 +57,7 @@ class HomeFaq extends HTMLElement {
         margin-bottom: 3rem;
       }
     
-      .faq-learn-more-mobile {
+      .faq-learn-more {
         display: block;
         text-align: center;
         color: #00AEF3;
@@ -84,7 +82,7 @@ class HomeFaq extends HTMLElement {
           padding: 4rem 5rem 2.5rem;
         }
     
-        .faq-learn-more-mobile {
+        .faq-learn-more {
           position: absolute;
           top: 4rem;
           right: 5rem;
@@ -95,7 +93,7 @@ class HomeFaq extends HTMLElement {
         .faq-container {
           padding: 6rem 19.25rem 2.5rem;
 
-          .faq-learn-more-mobile {
+          .faq-learn-more {
             top: 6rem;
             right: 19.25rem;
           }
