@@ -135,31 +135,35 @@ theNavbarStyle.textContent = `
     gap: 2.5rem;
     list-style: none;
   }
-
+  
   .navlink {
     color: white;
     cursor: pointer;
     transition: all 0.4s;
     text-decoration: none;
   }
-
+  
   .navlink:hover {
     color: #00A3E0;
   }
-
+  
   .sidebar-navlinks {
     list-style: none;
     padding-top: 4rem;
     padding-right: 1rem;
   }
-
+  
   .sidebar-navlink-container {
     height: 3.25rem;
     display: flex;
     align-items: center;
     justify-content: flex-end;
   }
-
+  
+  #navlink-2 a, #sidebar-navlink-2 li a {
+    color: #00A3E0;
+  }
+  
   @media (min-width: 768px) {
     .content {
       justify-content: space-evenly;
