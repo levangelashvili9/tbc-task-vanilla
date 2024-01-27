@@ -14,8 +14,8 @@ class TheFooter extends HTMLElement {
     this.sidebar = this.shadowRoot?.querySelector("base-sidebar");
     this.terms = this.shadowRoot?.querySelector(".terms");
     this.SidebarCloseSvg = this.shadowRoot?.querySelector(".sidebar-close-svg");
-    this.SidebarCloseButton = this.shadowRoot?.querySelector(
-      ".sidebar-close-button"
+    this.SidebarCloseButton = this.shadowRoot?.getElementById(
+      "sidebar-close-button"
     );
   }
 
@@ -37,7 +37,7 @@ class TheFooter extends HTMLElement {
         <img src="/images/tbc-logo.png" alt="tbc logo" class="tbc-logo" />
 
         <div class="contact">
-          <button class="contact-email">მოგვწერეთ</button>
+          <base-button type="primary">მოგვწერეთ</base-button>
           <div class="socials-wrapper">
             <img
               src="/images/facebook.png"
@@ -77,7 +77,9 @@ class TheFooter extends HTMLElement {
                 </div>
               </article>`
             ).join("")}
-            <button class="sidebar-close-button">დახურვა</button>
+            <base-button type="secondary" id="sidebar-close-button"
+              >დახურვა</base-button
+            >
           </div>
         </base-sidebar>
       </footer>
@@ -108,24 +110,6 @@ class TheFooter extends HTMLElement {
         justify-content: space-between;
     
         margin-bottom: 2.5rem;
-      }
-    
-      .contact-email {
-        background-color: #00AEF3;
-        color: white;
-    
-        width: 110px;
-        height: 36px;
-        
-        border: none;
-        border-radius: 6px;
-        transition: all 0.4s;
-        cursor: pointer;
-      }
-    
-      .contact-email:hover {
-        background-color: #D5D5D5;
-        color: #783131;
       }
     
       .socials-wrapper {
@@ -167,25 +151,6 @@ class TheFooter extends HTMLElement {
         height: 24px;
     
         cursor: pointer;
-      }
-    
-      .sidebar-close-button {
-        width: 100%;
-        height: 2.5rem;
-    
-        font-size: 18px;
-        font-weight: bold;
-        background-color: #DBDBDB;
-    
-        border: none;
-        border-radius: 6px;
-        transition: all 0.4s;
-        cursor: pointer;
-      }
-    
-      .sidebar-close-button:hover {
-        background-color: #00AEF3;
-        color: white;
       }
     
       .terms-content {
@@ -231,11 +196,6 @@ class TheFooter extends HTMLElement {
           justify-content: space-between;
         }
     
-        .contact-email {
-          width: 160px;
-          font-size: 16px;
-        }
-    
         .socials-wrapper {
           justify-content: flex-end;
         }
@@ -247,19 +207,11 @@ class TheFooter extends HTMLElement {
         .term-paragraphs p {
           line-height: 1.3rem;
         }
-    
-        .sidebar-close-button {
-          height: 3rem;
-        }
       }
     
       @media (min-width: 1024px) {
         .terms-content {
           padding: 5rem 3.5rem;
-        }
-    
-        .sidebar-close-button {
-          height: 3.75rem;
         }
       }
     
