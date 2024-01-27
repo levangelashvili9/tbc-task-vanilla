@@ -37,7 +37,9 @@ class TheFooter extends HTMLElement {
         <img src="/images/tbc-logo.png" alt="tbc logo" class="tbc-logo" />
 
         <div class="contact">
-          <base-button type="primary">მოგვწერეთ</base-button>
+          <a href="mailto:itacademy@tbcbank.com.ge">
+            <base-button type="primary">მოგვწერეთ</base-button>
+          </a>
           <div class="socials-wrapper">
             <a href="https://www.facebook.com/tbcbank/" target="_blank">
               <img
