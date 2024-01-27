@@ -18,26 +18,13 @@ homeCoursesTemplate.innerHTML = /* HTML */ `
 
     <div class="courses-list">
       ${CoursesConfig.map(
-        (course) => /* HTML */ `<article
-          class="course-card"
-          id="course-${course.id}"
-        >
-          <div class="course-image">
-            <img src="${course.image}" alt="${course.title} course photo" />
-          </div>
-          <div class="course-info">
-            <div>
-              <h3>${course.title}</h3>
-              <p>${course.status}</p>
-            </div>
-            <div class="course-learn-more">
-              <img src="/svgs/IconArrowRight.svg" alt="arrow right svg" />
-              <a href="${course.link}" class="course-learn-more-link"
-                >კურსის დეტალები</a
-              >
-            </div>
-          </div>
-        </article>`
+        (course) => /* HTML */ ` <home-courses-card
+          id="${course.id}"
+          image="${course.image}"
+          link="${course.link}"
+          status="${course.status}"
+          title="${course.title}"
+        ></home-courses-card>`
       ).join("")}
     </div>
   </section>
@@ -68,53 +55,6 @@ homeCoursesStyle.textContent = `
     display: grid;
     grid-template-columns: 1fr;
     gap: 2.5rem;
-  }
-
-  .course-card {
-    display: grid;
-    grid-template-rows: repeat(2, 1fr);;
-    width: 100%;
-    border: 1px solid #555555;
-    border-radius: 6px;
-    overflow: hidden;
-  }
-
-  .course-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover
-  }
-
-  .course-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    padding: 2rem 1rem;
-    color: #F4F4F4;
-  }
-
-  .course-info h3 {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 1rem;
-  }
-
-  .course-info p {
-    margin-bottom: 1.25rem;
-  }
-
-  .course-learn-more {
-    display: flex;
-    gap: 0.5rem;
-    cursor: pointer;
-  }
-  
-  .course-learn-more-link {
-    color: #00AEF3;
-    font-size: 16px;
-    font-weight: 500;
-    text-decoration: none;
   }
 
   @media (min-width: 546px) {
@@ -148,10 +88,6 @@ homeCoursesStyle.textContent = `
   @media (min-width: 1280px) {
     .courses-container {
       padding: 1.5rem 16.75rem 2.5rem 16.75rem;
-    }
-
-    .course-card {
-      grid-template-rows: 1fr 1.5fr;
     }
   }
 `;
