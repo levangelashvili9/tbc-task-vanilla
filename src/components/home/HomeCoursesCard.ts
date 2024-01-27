@@ -3,30 +3,28 @@ class HomeCoursesCard extends HTMLElement {
     super();
     this.attachShadow({ mode: "open" });
     this.render();
+
+    this.id = `course-${this.getAttribute("id")}`;
   }
 
   render() {
     let template = /* HTML */ `
-      <div class="course-card" id="course-${this.getAttribute("id")}">
-        <div class="course-image">
-          <img
-            src="${this.getAttribute("image")}"
-            alt="${this.getAttribute("title")} course photo"
-          />
+      <div class="course-image">
+        <img
+          src="${this.getAttribute("image")}"
+          alt="${this.getAttribute("title")} course photo"
+        />
+      </div>
+      <div class="course-info">
+        <div>
+          <h3 class="course-info-title">${this.getAttribute("title")}</h3>
+          <p class="course-info-status">${this.getAttribute("status")}</p>
         </div>
-        <div class="course-info">
-          <div>
-            <h3 class="course-info-title">${this.getAttribute("title")}</h3>
-            <p class="course-info-status">${this.getAttribute("status")}</p>
-          </div>
-          <div class="course-learn-more">
-            <img src="/svgs/IconArrowRight.svg" alt="arrow right svg" />
-            <a
-              href="${this.getAttribute("link")}"
-              class="course-learn-more-link"
-              >კურსის დეტალები</a
-            >
-          </div>
+        <div class="course-learn-more">
+          <img src="/svgs/IconArrowRight.svg" alt="arrow right svg" />
+          <a href="${this.getAttribute("link")}" class="course-learn-more-link"
+            >კურსის დეტალები</a
+          >
         </div>
       </div>
     `;
@@ -39,7 +37,7 @@ class HomeCoursesCard extends HTMLElement {
         font-family: "tbc-font";
       }
     
-      .course-card {
+      :host {
         display: grid;
         grid-template-rows: repeat(2, 1fr);;
         width: 100%;
@@ -87,7 +85,7 @@ class HomeCoursesCard extends HTMLElement {
       }
     
       @media (min-width: 1280px) {
-        .course-card {
+        :host {
           grid-template-rows: 1fr 1.5fr;
         }
       }
