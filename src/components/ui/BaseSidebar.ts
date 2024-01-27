@@ -1,14 +1,10 @@
-let baseSidebarTemplate = document.createElement("template");
-let baseSideBarStyle = document.createElement("style");
-
 class BaseSidebar extends HTMLElement {
   private overlay: HTMLElement | null | undefined;
 
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
-    this.shadowRoot?.appendChild(baseSidebarTemplate.content.cloneNode(true));
-    this.shadowRoot?.appendChild(baseSideBarStyle.cloneNode(true));
+    this.render();
 
     this.overlay = this.shadowRoot?.querySelector(".overlay");
 
@@ -45,67 +41,71 @@ class BaseSidebar extends HTMLElement {
       document.body.style.overflow = "auto";
     }
   }
+
+  render() {
+    let template = /* HTML */ `
+      <slot></slot>
+      <div class="overlay"></div>
+    `;
+
+    let style = `
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "tbc-font";
+      }  
+    
+      :host {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;   
+        overflow-y: scroll;
+    
+        background-color: #222222;
+        transition: all 0.5s;
+        z-index: 4;
+      }
+    
+      .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100%;   
+    
+        background-color: rgba(34, 34, 34, 0.5);
+        transition: all 0.5s;
+        z-index: -1;
+      }
+    
+      .overlay-open {
+        display: block;
+      }
+    
+      @media (min-width: 768px) {
+        :host {
+          width: 60% !important;
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+        }
+    
+        :host::-webkit-scrollbar {
+          display: none;
+        }
+      }
+      
+      @media (min-width: 1024px) {
+        :host {
+          width: 45% !important;
+        }
+      }
+    `;
+
+    this.shadowRoot!.innerHTML = `${template} <style>${style}</style>`;
+  }
 }
-
-baseSidebarTemplate.innerHTML = /* HTML */ `
-  <slot></slot>
-  <div class="overlay"></div>
-`;
-
-baseSideBarStyle.textContent = `
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "tbc-font";
-  }  
-
-  :host {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    height: 100vh;   
-    overflow-y: scroll;
-
-    background-color: #222222;
-    transition: all 0.5s;
-    z-index: 4;
-  }
-
-  .overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 100%;   
-
-    background-color: rgba(34, 34, 34, 0.5);
-    transition: all 0.5s;
-    z-index: -1;
-  }
-
-  .overlay-open {
-    display: block;
-  }
-
-  @media (min-width: 768px) {
-    :host {
-      width: 60% !important;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-    }
-
-    :host::-webkit-scrollbar {
-      display: none;
-    }
-  }
-  
-  @media (min-width: 1024px) {
-    :host {
-      width: 45% !important;
-    }
-  }
-`;
 
 window.customElements.define("base-sidebar", BaseSidebar);
