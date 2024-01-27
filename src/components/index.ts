@@ -5,6 +5,7 @@ import "./shared/TheFooter";
 // home page
 import "./home/HomeHero";
 import "./home/HomeCourses";
+import "./home/HomeCoursesCard";
 import "./home/HomePartners";
 import "./home/HomeFaq";
 
