@@ -10,14 +10,7 @@ class HomeFaq extends HTMLElement {
   render() {
     let template = /* HTML */ `
       <section class="faq-container">
-        <header>
-          <h2 class="faq-heading">ხშირად დასმული კითხვები</h2>
-          <a
-            href="https://www.tbcacademy.ge/usaid-faq"
-            class="faq-learn-more-desktop"
-            >ყველა კითხვა</a
-          >
-        </header>
+        <h2 class="faq-heading">ხშირად დასმული კითხვები</h2>
 
         <div class="faq-accordion">
           ${FaqConfig.map(
@@ -49,13 +42,12 @@ class HomeFaq extends HTMLElement {
         padding: 3rem 1.5rem;
         background-color: #161616;
         color: #F4F4F4;
-      }
-    
-      header {
-        margin-bottom: 2.5rem;
+
+        position: relative;
       }
     
       .faq-heading {
+        margin-bottom: 2.5rem;
         font-weight: 500;
       }
     
@@ -67,7 +59,7 @@ class HomeFaq extends HTMLElement {
         margin-bottom: 3rem;
       }
     
-      .faq-learn-more-mobile, .faq-learn-more-desktop {
+      .faq-learn-more-mobile {
         display: block;
         text-align: center;
         color: #00AEF3;
@@ -77,16 +69,12 @@ class HomeFaq extends HTMLElement {
         text-decoration: none;
       }
     
-      .faq-learn-more-desktop {
-        display: none;
-      }
-    
       @media (min-width: 768px) {
         .faq-container {
           padding: 2.5rem 5rem;
         }
     
-        header {
+        .faq-heading {
           margin-bottom: 3rem;
         }
       }
@@ -96,24 +84,21 @@ class HomeFaq extends HTMLElement {
           padding: 4rem 5rem 2.5rem;
         }
     
-        header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-        }
-    
         .faq-learn-more-mobile {
-          display: none;
-        }
-    
-        .faq-learn-more-desktop {
-          display: block;
+          position: absolute;
+          top: 4rem;
+          right: 5rem;
         }
       }
     
       @media (min-width: 1280px) {
         .faq-container {
-          padding: 6rem 16.75rem 2.5rem;
+          padding: 6rem 19.25rem 2.5rem;
+
+          .faq-learn-more-mobile {
+            top: 6rem;
+            right: 19.25rem;
+          }
         }
       }
     `;
