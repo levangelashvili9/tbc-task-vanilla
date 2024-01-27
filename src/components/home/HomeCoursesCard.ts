@@ -32,7 +32,6 @@ class HomeCoursesCard extends HTMLElement {
     `;
 
     let style = `
-    <style>
       * {
         margin: 0;
         padding: 0;
@@ -92,10 +91,9 @@ class HomeCoursesCard extends HTMLElement {
           grid-template-rows: 1fr 1.5fr;
         }
       }
-    </style>
     `;
 
-    this.shadowRoot!.innerHTML = `${template} ${style}`;
+    this.shadowRoot!.innerHTML = `${template} <style>${style}</style>`;
   }
 }
 

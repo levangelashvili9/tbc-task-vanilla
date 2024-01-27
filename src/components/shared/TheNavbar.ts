@@ -90,7 +90,6 @@ class TheNavbar extends HTMLElement {
     `;
 
     let style = `
-    <style>
       * {
         margin: 0;
         padding: 0;
@@ -171,10 +170,9 @@ class TheNavbar extends HTMLElement {
           display: flex;
         }
       }
-    </style>
     `;
 
-    this.shadowRoot!.innerHTML = `${template} ${style}`;
+    this.shadowRoot!.innerHTML = `${template} <style>${style}</style>`;
   }
 }
 
