@@ -8,7 +8,7 @@ The project's standout features include the use of web components for a modular 
 
 ### Links
 
-- Live Site URL: [TBC Task](#)
+- Live Site URL: [TBC Task](https://tbc-task-vanilla.vercel.app/)
 
 ### Project Structure
 
