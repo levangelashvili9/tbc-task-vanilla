@@ -217,7 +217,7 @@ class BaseCarousel extends HTMLElement {
         }
       }
     
-      @media (min-width: 1440px) {
+      @media (min-width: 1450px) {
         #chevron-left {
           left: 6rem;
         }

@@ -108,7 +108,7 @@ class HomePartners extends HTMLElement {
         }
       }
     
-      @media (min-width: 1280px) {
+      @media (min-width: 1450px) {
         .partners-heading {
           margin-left: 16.75rem;
         }

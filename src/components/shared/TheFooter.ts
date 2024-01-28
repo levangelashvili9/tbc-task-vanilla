@@ -224,7 +224,7 @@ class TheFooter extends HTMLElement {
         }
       }
     
-      @media (min-width: 1280px) {
+      @media (min-width: 1450px) {
         .container {
           padding: 3.75rem 16.75rem;
         }

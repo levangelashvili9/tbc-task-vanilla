@@ -74,14 +74,16 @@ class HomeCourses extends HTMLElement {
         .courses-heading {
           margin-bottom: 4rem;
         }
-          
+      }
+
+      @media (min-width: 1080px) {
         .courses-list {
           display: grid;
           grid-template-columns: repeat(3, 1fr);;
         }
       }
     
-      @media (min-width: 1280px) {
+      @media (min-width: 1450px) {
         .courses-container {
           padding: 1.5rem 16.75rem 2.5rem 16.75rem;
         }
