@@ -45,6 +45,7 @@ class HomeCoursesCard extends HTMLElement {
         display: grid;
         grid-template-rows: repeat(2, 1fr);;
         width: 100%;
+        height: 100%;
         border: 1px solid #555555;
         border-radius: 6px;
         overflow: hidden;
@@ -88,9 +89,10 @@ class HomeCoursesCard extends HTMLElement {
         text-decoration: none;
       }
     
-      @media (min-width: 1450px) {
+      @media (min-width: 1280px) {
         .course-card {
           grid-template-rows: 1fr 1.5fr;
+          grid-template-columns: 1fr;
         }
       }
     `;

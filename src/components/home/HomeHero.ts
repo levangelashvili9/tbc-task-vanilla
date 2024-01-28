@@ -109,7 +109,7 @@ class HomeHero extends HTMLElement {
         }
       }
     
-      @media (min-width: 1450px) {
+      @media (min-width: 1280px) {
         .hero-image {
           height: 21.75rem;
           padding-left: 16.75rem;
