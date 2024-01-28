@@ -42,9 +42,9 @@ The project's standout features include the use of web components for a modular 
     📄 NavbarConfig.ts
     📄 PartnersConfig.ts
     📄 TermsConfig.ts
-    📄 main.ts
-    📄 style.css
-    📄 vite-env.d.ts
+  📄 main.ts
+  📄 style.css
+  📄 vite-env.d.ts
 📄 .gitignore
 📄 index.html
 📄 package-lock.json
