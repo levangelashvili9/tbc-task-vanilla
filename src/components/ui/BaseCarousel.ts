@@ -3,7 +3,7 @@ class BaseCarousel extends HTMLElement {
   private indicators: NodeListOf<HTMLElement> | undefined;
   private prevSlideButton: HTMLElement | null | undefined;
   private nextSlideButton: HTMLElement | null | undefined;
-  private time: number;
+  private timer: number;
   private interval: any;
 
   constructor() {
@@ -15,7 +15,7 @@ class BaseCarousel extends HTMLElement {
     this.indicators = this.shadowRoot?.querySelectorAll(".carousel-indicator");
     this.prevSlideButton = this.shadowRoot?.getElementById("chevron-left");
     this.nextSlideButton = this.shadowRoot?.getElementById("chevron-right");
-    this.time = 0;
+    this.timer = 0;
 
     // make first slide active
     this.slides![0].classList.add("carousel-slide-active");
@@ -48,7 +48,7 @@ class BaseCarousel extends HTMLElement {
     // Add .slide-active class to active slide only
     this.slides![id].classList.add("carousel-slide-active");
 
-    this.time = 1;
+    this.timer = 1;
   }
 
   prevSlide() {
@@ -79,10 +79,10 @@ class BaseCarousel extends HTMLElement {
   }
 
   autoPlay() {
-    if (this.time === 5) {
+    if (this.timer === 5) {
       this.nextSlide();
     } else {
-      this.time++;
+      this.timer++;
     }
   }
 
