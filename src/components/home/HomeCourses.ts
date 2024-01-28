@@ -85,6 +85,12 @@ class HomeCourses extends HTMLElement {
     
       @media (min-width: 1280px) {
         .courses-container {
+          padding: 1.5rem 9.5rem 2.5rem 9.5rem;
+        }
+      }
+
+      @media (min-width: 1440px) {
+        .courses-container {
           padding: 1.5rem 16.75rem 2.5rem 16.75rem;
         }
       }

@@ -226,6 +226,16 @@ class TheFooter extends HTMLElement {
     
       @media (min-width: 1280px) {
         .container {
+          padding: 3.75rem 9.5rem;
+        }
+    
+        .contact {
+          padding: 3.75rem 9.5rem 3.75rem 0;
+        }
+      }
+
+      @media (min-width: 1440px) {
+        .container {
           padding: 3.75rem 16.75rem;
         }
     

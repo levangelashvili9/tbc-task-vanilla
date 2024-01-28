@@ -91,6 +91,17 @@ class HomeFaq extends HTMLElement {
     
       @media (min-width: 1280px) {
         .faq-container {
+          padding: 6rem 11.5rem 2.5rem;
+
+          .faq-learn-more {
+            top: 6rem;
+            right: 11.5rem;
+          }
+        }
+      }
+
+      @media (min-width: 1440px) {
+        .faq-container {
           padding: 6rem 19.25rem 2.5rem;
 
           .faq-learn-more {

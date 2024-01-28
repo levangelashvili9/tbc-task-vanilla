@@ -112,7 +112,7 @@ class HomeHero extends HTMLElement {
       @media (min-width: 1280px) {
         .hero-image {
           height: 21.75rem;
-          padding-left: 16.75rem;
+          padding-left: 9.5rem;
         }
     
         header h1 {
@@ -125,7 +125,7 @@ class HomeHero extends HTMLElement {
         }
     
         .hero-info {
-          padding: 4rem 16.75rem;
+          padding: 4rem 9.5rem;
         }
     
         .hero-info p {
@@ -135,6 +135,17 @@ class HomeHero extends HTMLElement {
     
         .hero-info a {
           font-size: 22px;
+        }
+      }
+
+      @media (min-width: 1440px) {
+        .hero-image {
+          height: 21.75rem;
+          padding-left: 16.75rem;
+        }
+    
+        .hero-info {
+          padding: 4rem 16.75rem;
         }
       }
     `;

@@ -217,6 +217,16 @@ class BaseCarousel extends HTMLElement {
         }
       }
     
+      @media (min-width: 1280px) {
+        #chevron-left {
+          left: 3.5rem;
+        }
+    
+        #chevron-right {
+          right: 3.5rem;
+        }
+      }
+
       @media (min-width: 1440px) {
         #chevron-left {
           left: 6rem;
