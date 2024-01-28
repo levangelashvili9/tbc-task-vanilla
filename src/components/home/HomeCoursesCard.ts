@@ -91,7 +91,7 @@ class HomeCoursesCard extends HTMLElement {
     
       @media (min-width: 1280px) {
         .course-card {
-          grid-template-rows: 1fr 1.5fr;
+          grid-template-rows: 1fr 1.65fr;
         }
       }
     `;
