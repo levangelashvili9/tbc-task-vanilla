@@ -127,7 +127,7 @@ class TheNavbar extends HTMLElement {
       }
 
       .navbar-scrolled {
-        background-color: rgba(26,30,31, 0.9);
+        background-color: rgba(26,30,31, 0.95);
       }
     
       .content {
