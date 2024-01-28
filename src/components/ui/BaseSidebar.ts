@@ -28,7 +28,7 @@ class BaseSidebar extends HTMLElement {
     this.style.right = "0";
     this.overlay!.classList.add("overlay-open");
 
-    if (!this.getAttribute("scrollable")) {
+    if (this.getAttribute("scrollable") !== "true") {
       document.body.style.overflow = "hidden";
     }
   }
@@ -37,7 +37,7 @@ class BaseSidebar extends HTMLElement {
     this.style.right = "-100%";
     this.overlay!.classList.remove("overlay-open");
 
-    if (!this.getAttribute("scrollable")) {
+    if (this.getAttribute("scrollable") !== "true") {
       document.body.style.overflow = "auto";
     }
   }
