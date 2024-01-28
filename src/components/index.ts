@@ -12,6 +12,7 @@ import "./home/HomePartners";
 
 // ui
 import "./ui/BaseButton";
+import "./ui/BaseCarousel";
 import "./ui/BaseSidebar";
 import "./ui/FrieMenu";
 
