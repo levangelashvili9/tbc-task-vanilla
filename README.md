@@ -14,33 +14,34 @@ The project's standout features include the use of web components for a modular 
 
 ```bash
 📁 public
-    📁 fonts
-    📁 images
-    📁 svgs
+  📁 fonts
+  📁 images
+  📁 svgs
 📁 src
-    📁 components
-        📁 home
-            📄 HomeCourses.ts
-            📄 HomeCoursesCard.ts
-            📄 HomeFaq.ts
-            📄 HomeFaqQuestion.ts
-            📄 HomeHero.ts
-            📄 HomePartners.ts
-        📁 shared
-            📄 TheFooter.ts
-            📄 TheNavbar.ts
-        📁 ui
-            📄 BaseButton.ts
-            📄 BaseSidebar.ts
-            📄 FrieMenu.ts
-        📄 index.ts
-    📁 config
-        📄 CoursesConfig.ts
-        📄 FaqConfig.ts
-        📄 index.ts
-        📄 NavbarConfig.ts
-        📄 PartnersConfig.ts
-        📄 TermsConfig.ts
+  📁 components
+    📁 home
+      📄 HomeCourses.ts
+      📄 HomeCoursesCard.ts
+      📄 HomeFaq.ts
+      📄 HomeFaqQuestion.ts
+      📄 HomeHero.ts
+      📄 HomePartners.ts
+    📁 shared
+      📄 TheFooter.ts
+      📄 TheNavbar.ts
+    📁 ui
+      📄 BaseButton.ts
+      📄 BaseCarousel.ts
+      📄 BaseSidebar.ts
+      📄 FrieMenu.ts
+    📄 index.ts
+  📁 config
+    📄 CoursesConfig.ts
+    📄 FaqConfig.ts
+    📄 index.ts
+    📄 NavbarConfig.ts
+    📄 PartnersConfig.ts
+    📄 TermsConfig.ts
     📄 main.ts
     📄 style.css
     📄 vite-env.d.ts
