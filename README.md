@@ -14,6 +14,9 @@ The project's standout features include the use of web components for a modular 
 
 ```bash
 📁 public
+    📁 fonts
+    📁 images
+    📁 svgs
 📁 src
     📁 components
         📁 home
