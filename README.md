@@ -2,7 +2,7 @@
 
 ### Overview
 
-TBC Task is a web application built without relying on conventional frameworks. Instead, it leverages Vite, TypeScript, and vanilla JavaScript to deliver a streamlined and efficient user experience. The project features a well-organized structure, with components categorized under home, shared, and ui in the src directory. Notable sections include a dynamic course display, an FAQ segment, and a partner showcase.
+TBC Task is a web application built without relying on any libraries. Instead, it leverages Vite, TypeScript, and vanilla JavaScript to deliver a streamlined and efficient user experience. The project features a well-organized structure, with components categorized under home, shared, and ui in the src directory. Notable sections include a dynamic course display, an FAQ segment, and a partner showcase.
 
 The project's standout features include the use of web components for a modular architecture, enhancing maintainability. TypeScript is employed to improve code quality, while Vite serves as the build tool, ensuring swift development and optimal performance.
 
