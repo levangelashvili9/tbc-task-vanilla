@@ -1,6 +1,7 @@
 import { NavbarConfig } from "../../config";
 
 class TheNavbar extends HTMLElement {
+  private container: HTMLElement | null | undefined;
   private burgerMenu: FrieMenu | null | undefined;
   private sidebar: BaseSidebar | null | undefined;
   private isMenuActive: boolean;
@@ -10,6 +11,7 @@ class TheNavbar extends HTMLElement {
     this.attachShadow({ mode: "open" });
     this.render();
 
+    this.container = this.shadowRoot?.querySelector(".container");
     this.burgerMenu = this.shadowRoot?.querySelector("frie-menu");
     this.sidebar = this.shadowRoot?.querySelector("base-sidebar");
     this.isMenuActive = false;
@@ -21,6 +23,8 @@ class TheNavbar extends HTMLElement {
     this.sidebar?.addEventListener("custom:overlay-clicked", () =>
       this.overlayClickedHandler()
     );
+
+    window.addEventListener("scroll", () => this.handleScroll());
   }
 
   disconnectedCallback() {
@@ -28,6 +32,8 @@ class TheNavbar extends HTMLElement {
     this.sidebar?.removeEventListener("custom:overlay-clicked", () =>
       this.overlayClickedHandler()
     );
+
+    window.removeEventListener("scroll", () => this.handleScroll());
   }
 
   overlayClickedHandler() {
@@ -45,6 +51,14 @@ class TheNavbar extends HTMLElement {
     }
 
     this.isMenuActive = !this.isMenuActive;
+  }
+
+  handleScroll() {
+    if (window.scrollY > 1) {
+      this.container?.classList.add("navbar-scrolled");
+    } else {
+      this.container?.classList.remove("navbar-scrolled");
+    }
   }
 
   render() {
@@ -108,7 +122,12 @@ class TheNavbar extends HTMLElement {
         display: flex;
         align-items: center;
         
-        background-color: #1A1E1F;
+        background-color: rgb(26,30,31);
+        transition: all 0.4s;
+      }
+
+      .navbar-scrolled {
+        background-color: rgba(26,30,31, 0.9);
       }
     
       .content {
